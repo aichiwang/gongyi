@@ -18,7 +18,7 @@
     .level {
         position: relative;
         width: 13.6rem;
-        height: 9.5rem;
+        height: 12rem;
         margin: 0 auto;
         border-radius: 0.4rem;
         box-shadow: 0 0 0.5rem #ddd;
@@ -50,6 +50,9 @@
                     //float: right;
                     width: 2rem;
                     margin-top: 0.8rem;
+                }
+                #teamPor{
+                    width: 2.7rem;
                 }
             }
             li:last-child {

@@ -42,6 +42,10 @@
 						<span>团队目标</span>
 						<input type="text" name="" id="teamTarget" value="" placeholder="请输入团队目标" />
 					</li>
+					<li>
+						<span>战队头像</span>
+						<input type="file" name="" id="teamPor" value="" placeholder="请上传战队头像" />
+					</li>
 				</ul>
 
 				<input class="comfirmBtn" type="submit" value="确认">
@@ -68,8 +72,10 @@
 				var district = $('#district_selector').val();
 				var teamState = $('#teamState').val();
 				var teamTarget = $('#teamTarget').val();
+				var teamPor = $('#teamPor').val();
+				
 
-				console.log(teamName)
+				console.log(teamPor)
 				if(!teamName) {
 					globalMes('请输入队伍名')
 				} else if(!province) {
@@ -144,9 +150,9 @@
 						$('#teamName').val(data.data.team_info.name)
 						$('#teamState').val(data.data.team_info.announcement)
 						$('#teamTarget').val(data.data.team_info.target_num)
-						$('#province_selector [value='+ data.data.team_info.province +']').attr('selected','selected')
+						$('#province_selector [value='+ data.data.team_info.province +']')[0].selected=true;
 						$('#province_selector').trigger('change')
-						$('#city_selector [value='+ data.data.team_info.city +']').attr('selected','selected')
+						$('#city_selector [value='+ data.data.team_info.city +']')[0].selected=true;
 						$('#city_selector').trigger('change')
 //						$('#province_selector [value='+ data.data.team_info.province.slice(0,2) +']').attr('selected','selected')
 					}

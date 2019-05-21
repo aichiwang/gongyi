@@ -149,7 +149,7 @@
 					dataType: 'jsonp',
 					url: "http://cbg.mobilefoundation.org.cn/api/user/getuserinfo",
 					data: {
-						//				uid: 8
+//										uid: 49
 					},
 					async: true,
 					success: function(data) {
@@ -158,9 +158,9 @@
 						$('#uage').find('[value=' + data.data.userinfo.age + ']').attr('selected', 'selected');
 						$('#receiver').val(data.data.userinfo.receiver_name);
 						$('#phone').val(data.data.userinfo.receiver_phone);
-						$('#province_selector [value=' + data.data.userinfo.res_province + ']').attr('selected', 'selected')
+						$('#province_selector [value=' + data.data.userinfo.res_province + ']')[0].selected=true;
 						$('#province_selector').trigger('change')
-						$('#city_selector [value=' + data.data.userinfo.res_city + ']').attr('selected', 'selected')
+						$('#city_selector [value=' + data.data.userinfo.res_city + ']')[0].selected=true;
 						$('#city_selector').trigger('change')
 //						$('#province_selector [value=' + data.data.userinfo.receiver_phone.slice(0, 2) + ']').attr('selected', 'selected')
 

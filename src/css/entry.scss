@@ -7,44 +7,45 @@
     color: #707070;
     .level {
         position: relative;
-        width: 11rem;
-        height: 16rem;
+        width: 11.2rem;
+        height: 16.2rem;
         padding: 0.12rem;
         margin: 1.76rem auto 0;
         border-radius: 0.4rem;
         box-shadow: 0 0 0.5rem #ddd;
+        background: url(../img/static/cardBg.png) no-repeat;
+        background-size: contain;
         .imgWrap {
-            width: 100%;
-            height: 12.5rem;
+            width: 4.06rem;
+            height: 5.72rem;
+            position: absolute;
+            top: 5.45rem;
+            left: 1.7rem;
             img {
                 width: 100%;
                 height: 100%;
-                border-top-left-radius: 0.4rem;
-                border-top-right-radius: 0.4rem;
             }
         }
         .infoWrap {
             color: #fff;
-            height: 3.5rem;
-            padding: 0 0.36rem 0 0.5rem;
-            border-bottom-left-radius: 0.4rem;
-            border-bottom-right-radius: 0.4rem;
-            background: #76D8FF;
             overflow: hidden;
             .left {
-                float: left;
-                margin-top: 0.5rem;
+                position: absolute;
+                top: 5.4rem;
+                left: 6.8rem;
                 font-size: 0.56rem;
+                color: #A5A5A5;
                 .nick {
+                    color: #0B0B0B;
                     font-size: 0.8rem;
                 }
             }
             .right {
-                float: right;
-                width: 2.86rem;
-                height: 2.86rem;
-                background: #fff;
-                margin-top: 0.34rem;
+                position: absolute;
+                top: 8.79rem;
+                left: 7.46rem;
+                width: 2.45rem;
+                height: 2.45rem;
                 img{
                     width: 100%;
                     height: 100%;
@@ -71,10 +72,10 @@
             color: #9CE0F2;
             font-size: 0.64rem;
         }
-        .save{
+        .save {
             width: 4.18rem;
         }
-        .share{
+        .share {
             height: 1.9rem;
             background: url(../img/static/share.png) no-repeat;
             background-size: 100% 100%;

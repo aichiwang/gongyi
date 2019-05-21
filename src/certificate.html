@@ -7,7 +7,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
 		<title>确认报名</title>
-		<link rel="stylesheet" href="css/entry.css">
+		<link rel="stylesheet" href="css/certificate.css">
 		<script>
 			function setRem() {
 				document.documentElement.style.fontSize = document.documentElement.clientWidth / 15 + 'px';
@@ -25,9 +25,8 @@
 				</div>
 				<div class="infoWrap">
 					<div class="left">
-						<p>编号: <span id="number">0918</span></p>
 						<p class="nick"> 杨晓毛</p>
-						<p>所属团队: <span id="teamname">卡姆昂小队</span></p>
+						<p>编号: <span id="number">0918</span></p>
 					</div>
 					<div class="right"><img src=""/></div>
 				</div>
@@ -63,7 +62,7 @@
 					dataType: 'jsonp',
 					url: "http://cbg.mobilefoundation.org.cn/api/card/",
 					data: {
-//						uid: 8
+//						uid: 48
 					},
 					async: true,
 					success:function(data){
@@ -81,7 +80,7 @@
 					dataType: 'jsonp',
 					url: "http://cbg.mobilefoundation.org.cn/api/user/getuserinfo",
 					data: {
-//						uid: 8
+//						uid: 48
 					},
 					async: true,
 					success:function(data){

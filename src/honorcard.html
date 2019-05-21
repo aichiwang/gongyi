@@ -27,14 +27,14 @@
 				<p class="nick">WUDI杨毛毛</p>
 				<p class="userNum">编号: 8059525</p>
 				<div class="userInfo">
-					<span>当前积分: 2800</span>
-					<span>当前关卡: 第2关</span>
+					<span id="curScore">当前积分: 2800</span>
+					<span id="curLevel">当前关卡: 第2关</span>
 				</div>
 			</div>
 
 			<div class="card">
 				<div class="cardWrap">
-					<div class="cardNum">证书编号: 000001</div>
+					<!--<div class="cardNum">证书编号: 000001</div>
 					<p class="honorName">小小公益传播官</p>
 					<p class="cardName">荣誉证书</p>
 					<div class="stars">
@@ -42,16 +42,21 @@
 						<img src="img/static/star.png" />
 						<img src="img/static/star.png" />
 						<img src="img/static/star.png" />
-					</div>
+					</div>-->
 					<p class="uname">杨晓毛</p>
-					<p class="state">在此次小小公益宣传活动中,表现突出特发此证!</p>
+					<i class="yxNum">3</i>
+					<i class="dyNum">3</i>
+					<i class="year">2019</i>
+					<i class="month">2</i>
+					<i class="day">1</i>
+					<!--<p class="state">在此次小小公益宣传活动中,表现突出特发此证!</p>
 					<div class="bottom">
 						<div class="blank"></div>
 						<div class="guanfang">
 							<p>中国扶贫基金会</p>
 							<p>2019年8月1日</p>
 						</div>
-					</div>
+					</div>-->
 				</div>
 			</div>
 			<div class="toSave">保存打印</div>
@@ -72,7 +77,58 @@
 			Init();
 
 			function Init() {
+				getUserInfo();
+				gethonor();
 				events();
+			}
+			
+			function getUserInfo() {
+				$.ajax({
+					type: "get",
+					dataType: 'jsonp',
+					url: "http://cbg.mobilefoundation.org.cn/api/user/getuserinfo",
+					data: {
+//						uid: 8
+					},
+					async: true,
+					success: function(data) {
+						console.log(data)
+						$('.portrait img').attr('src', data.data.userinfo.headimgurl)
+						$('.userNum').html('编号: ' + data.data.userinfo.id)
+						$('.nick').html(data.data.userinfo.name)
+						$('.uname').html(data.data.userinfo.name)
+						$('#curScore').html('当前积分: ' + data.data.score)
+						$('#curLevel').html('当前关卡: 第 ' + data.data.star_lv.lv + '关')
+					}
+				});
+			}
+			
+			function gethonor() {
+				$.ajax({
+					type: "get",
+					dataType: 'jsonp',
+					url: "http://cbg.mobilefoundation.org.cn/api/honor",
+					data: {
+//						uid: 8
+					},
+					async: true,
+					success: function(data) {
+						if(data.code == 0) {
+							$('.yxNum').html( data.data.effect_count)
+							$('.dyNum').html( data.data.arouse_count)
+							$('.yxNum').html( data.data.effect_count)
+							$('.yxNum').html( data.data.effect_count)
+							var times = new Date(data.data.ctime)
+							$('.year').html( times.getFullYear())
+							$('.month').html( times.getMonth()+1)
+							$('.day').html( times.getDate())
+							
+						}else {
+							globalMes(data.msg)
+						}
+
+					}
+				});
 			}
 
 			function events() {

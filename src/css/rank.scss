@@ -68,9 +68,14 @@
                 }
             }
         }
+        .listWrap{
+            height: 10rem;
+            overflow: overlay;
+        }
         .rankDetail{
             margin: 0 0.5rem;
             .rankItem{
+                position: relative;
                 margin-bottom: 0.36rem;
                 height: 1.5rem;
                 .rankNum{

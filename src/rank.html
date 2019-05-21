@@ -36,14 +36,17 @@
 					<span>团队排行榜<i></i></span>
 					<span>城市对抗榜<i></i></span>
 				</div>
-				<ul class="rankDetail">
-					<!--<li class="rankItem personal">
+				<div class="listWrap">
+					<ul class="rankDetail">
+						<!--<li class="rankItem personal">
 						<i class="rankNum NO2">2</i>
 						<img src="img/static/no2.png" />
 						<span class="name">卡姆昂小队</span>
 						<span class="score">成绩: 96</span>
 					</li>-->
-				</ul>
+					</ul>
+				</div>
+
 			</div>
 
 			<div class="toCenter">个人中心</div>
@@ -86,29 +89,29 @@
 					dataType: 'jsonp',
 					url: "http://cbg.mobilefoundation.org.cn/api/user/getuserinfo",
 					data: {
-//						uid: 8
+						//						uid: 8
 					},
 					async: true,
 					success: function(data) {
-//						console.log(data)
+						//						console.log(data)
 						$('.portrait img').attr('src', data.data.userinfo.headimgurl)
 						window.uinfo = data.data.userinfo
 						getRankInfo();
 					}
 				});
 			}
-			
+
 			function getMyRankInfo() {
 				$.ajax({
 					type: "get",
 					dataType: 'jsonp',
 					url: "http://cbg.mobilefoundation.org.cn/api/rank/getmyrankinfo",
 					data: {
-//						uid: 8
+						//						uid: 8
 					},
 					async: true,
 					success: function(data) {
-//						console.log(data)
+						//						console.log(data)
 						$('.grRank').html(data.data.person_rank)
 						$('.teamRank').html(data.data.team_rank)
 					}
@@ -124,7 +127,7 @@
 						type: rqType,
 						city: window.uinfo.city,
 						page: 0,
-						perpage: 5,
+						perpage: 50,
 					},
 					async: true,
 					success: function(data) {
@@ -132,13 +135,13 @@
 						var str = '';
 						for(var i = 0; i < data.data.rank_list.length; i++) {
 							if(rqType == 'team') {
-								str += '<li class="rankItem teamnal">'+
-										'<i class="rankNum NO' + (i + 1) + '">' + (i + 1) + '</i>'+
-										'<span class="name">' + data.data.rank_list[i].name + '</span>'+
-										'<span class="members">人数: ' + data.data.rank_list[i].user_count + '</span>'+
-										'<span class="score">成绩: ' + data.data.rank_list[i].score + '</span>'+
+								str += '<li class="rankItem teamnal">' +
+									'<i class="rankNum NO' + (i + 1) + '">' + (i + 1) + '</i>' +
+									'<span class="name">' + data.data.rank_list[i].name + '</span>' +
+									'<span class="members">人数: ' + data.data.rank_list[i].user_count + '</span>' +
+									'<span class="score">成绩: ' + data.data.rank_list[i].score + '</span>' +
 									'</li>'
-					
+
 							} else if(rqType == 'city') {
 								str += '<li class="rankItem personal">' +
 									'<i class="rankNum NO' + (i + 1) + '">' + (i + 1) + '</i>' +

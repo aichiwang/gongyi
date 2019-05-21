@@ -47,19 +47,20 @@
     }
     .card {
         position: relative;
-        width: 13.7rem;
-        height: 16.8rem;
+        width: 13.62rem;
+        height: 19.18rem;
         margin: 1.12rem auto 0;
         border-radius: 0.4rem;
         box-shadow: 0 0 0.5rem #ddd;
         overflow: hidden;
+        background: url(../img/static/honorBg.png) no-repeat;
+        background-size: contain;
         .cardWrap {
             width: 10.9rem;
             height: 14rem;
             margin: 0.72rem auto 0;
             padding: 0.6rem;
             position: relative;
-            border: 0.1rem dashed #DADADA;
             .cardNum{
                 text-align: left;
             }
@@ -83,9 +84,41 @@
                 }
             }
             .uname{
+                position: absolute;
+                top: 6.5rem;
+                left: 0;
+                width: 100%;
                 font-size: 0.8rem;
                 font-weight: bold;
             }
+            .yxNum,.dyNum,.year,.month,.day{
+                position: absolute;
+                font-size: 0.43rem;
+            }
+            .yxNum{
+                top: 8.5rem;
+                left: 10.5rem;
+            }
+            .dyNum{
+                top: 9.1rem;
+                left: 4rem;
+            }
+            .year{
+                top: 14.2rem;
+                left: 8.4rem;
+                font-size: 0.3rem;
+            }
+             .month{
+                top: 14.2rem;
+                font-size: 0.3rem;
+                left: 9.73rem;
+            }
+             .day{
+                font-size: 0.3rem;
+                top: 14.2rem;
+                left: 10.35rem;
+            }
+            
             .state{
                 padding: 0.7rem 0.8rem;
                 text-align: left;

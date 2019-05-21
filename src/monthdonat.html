@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+		<title>我的月捐</title>
+		<link rel="stylesheet" href="css/monthdonat.css?v=1.0">
+		<script>
+			function setRem() {
+				document.documentElement.style.fontSize = document.documentElement.clientWidth / 15 + 'px';
+			}
+			window.onresize = setRem;
+			setRem();
+		</script>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="tab">
+				<span class="cur">已提交<i></i></span>
+				<span>通过审核<i></i></span>
+				<div class="newsub">新增提交</div>
+			</div>
+			<div class="sublist">
+				<ul class="teamer">
+					<li>
+						<span class="nick">杨小啊</span>
+						<span class="phone">电话: <i>13221231239</i></span>
+						<span class="delete">删除</span>
+						<i class="comfirmDel">确认删除</i>
+					</li>
+					<li>
+						<span class="nick">杨小啊</span>
+						<span class="phone">电话: <i>13221231239</i></span>
+						<span class="delete">删除</span>
+						<i class="comfirmDel">确认删除</i>
+					</li>
+				</ul>
+			</div>
+			<div class="hasPass">
+				<ul class="teamer">
+					<li>
+						<span class="nick">杨小啊</span>
+						<span class="phone">电话: <i>13221231239</i></span>
+						<span class="donation">+50</span>
+					</li>
+					<li>
+						<span class="nick">杨小啊</span>
+						<span class="phone">电话: <i>13221231239</i></span>
+						<span class="donation">+50</span>
+					</li>
+					<li>
+						<span class="nick">杨小啊</span>
+						<span class="phone">电话: <i>13221231239</i></span>
+						<span class="donation">+50</span>
+					</li>
+				</ul>
+			</div>
+
+			<div class="bottom">
+				<div class="toCenter">个人中心</div>
+			</div>
+			<!--<div class="alert" style="display: none;">-->
+			<div class="alert">
+				<div class="cover"></div>
+				<div class="content">
+					<input class="nick" type="text" name="" id="" value="" placeholder="请输入姓名" /><br />
+					<input class="phone" type="text" name="" id="" value="" placeholder="请输入电话号码" /><br />
+
+					<div class="dateCover">
+						选择办理日期<i></i>
+						<input class="date" type="date" name="" id="" value="" placeholder="选择办理日期" style="opacity: 0;"/>
+					</div>
+					<div class="toInvite">马上邀请</div>
+					<i class="close"></i>
+				</div>
+			</div>
+		</div>
+
+		<!-- Dom Content End -->
+	</body>
+	<script src="libs/jquery/jquery.min.js"></script>
+	<script>
+		$(function() {
+			Init();
+
+			function Init() {
+				getDonateInfo(3);
+				events();
+			}
+
+			function getDonateInfo(mType) {
+				$.ajax({
+					type: "get",
+					dataType: 'jsonp',
+					url: "http://cbg.mobilefoundation.org.cn/api/donate/getlist",
+					data: {
+						//						uid: 8,
+						status: mType
+					},
+					async: true,
+					success: function(data) {
+						console.log(data)
+						var str = '';
+						for(var i = 0; i < data.data.list.length; i++) {
+
+							if(mType == 2) {
+								str += '<li>' +
+									//									'<span class="nick">'+data.data.list[i] +'</span>' +
+									'<span class="phone">电话: <i>13221231239</i></span>' +
+									'<span class="delete">删除</span>' +
+									'<i class="comfirmDel">确认删除</i>' +
+									'</li>'
+							}
+						}
+						$('#teamname').html(data.data.team_name)
+
+					}
+				});
+			}
+
+			function events() {
+
+				$('.newsub').on('click', function() {
+					$('.alert').show();
+				})
+
+				$('.alert').on('click', '.close,.cover', function() {
+					$('.alert').hide();
+				})
+
+				$('.teamer').on('click', '.delete', function() {
+					$(this).parents('li').addClass('active')
+				})
+				$('.teamer').on('click', 'li', function() {
+					$(this).siblings().removeClass('active')
+				})
+
+				$('.tab').on('click', 'span', function() {
+					$(this).addClass('cur').siblings().removeClass('cur')
+					if($(this).index() == 0) {
+						$('.sublist').show().siblings('.hasPass').hide();
+					} else {
+						$('.hasPass').show().siblings('.sublist').hide();
+					}
+				})
+
+				$('.toCenter').click(function() {
+					location.href = 'center.html';
+				})
+
+				$('.dateCover').click(function() {
+					$('.date').trigger('click')
+				})
+				
+				$('.date').click(function(){
+					$(this).css('opacity','1')
+				})
+
+			}
+		})
+	</script>
+
+</html>

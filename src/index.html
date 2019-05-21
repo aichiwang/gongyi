@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+		<title>index</title>
+		<link rel="stylesheet" href="css/index.css?v=1.0">
+		<script>
+			function setRem() {
+				document.documentElement.style.fontSize = document.documentElement.clientWidth / 15 + 'px';
+			}
+			window.onresize = setRem;
+			setRem();
+		</script>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<ul>
+				<li>
+					<a href="answer.html">answer.html</a>
+				</li>
+				<li>
+					<a href="bm.html">bm.html</a>
+				</li>
+				<li>
+					<a href="center.html">center.html</a>
+				</li>
+				<li>
+					<a href="certificate.html">certificate.html</a>
+				</li>
+				<li>
+					<a href="create.html">create.html</a>
+				</li>
+				<li>
+					<a href="edit.html">edit.html</a>
+				</li>
+				<li>
+					<a href="entry.html">entry.html</a>
+				</li>
+				<li>
+					<a href="fixteam.html">fixteam.html</a>
+				</li>
+				<li>
+					<a href="honor.html">honor.html</a>
+				</li>
+				<li>
+					<a href="honorcard.html">honorcard.html</a>
+				</li>
+				<li>
+					<a href="introduce.html">introduce.html</a>
+				</li>
+				<li>
+					<a href="join.html">join.html</a>
+				</li>
+				<li>
+					<a href="monthdonat.html">monthdonat.html</a>
+				</li>
+				<li>
+					<a href="myteam.html">myteam.html</a>
+				</li>
+				<li>
+					<a href="rank.html">rank.html</a>
+				</li>
+				<li>
+					<a href="team.html">team.html</a>
+				</li>
+				
+			</ul>
+		</div>
+
+		<!-- Dom Content End -->
+	</body>
+	<script src="libs/jquery/jquery.min.js"></script>
+	<script>
+		$(function() {
+			Init();
+
+			function Init() {
+				events();
+			}
+
+			function events() {
+
+				$('.toCenter').click(function() {
+					location.href = 'center.html';
+				})
+			}
+		})
+	</script>
+
+</html>

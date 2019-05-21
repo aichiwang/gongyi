@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+		<title>排行榜</title>
+		<link rel="stylesheet" href="css/introduce.css?v=1.0">
+		<script>
+			function setRem() {
+				document.documentElement.style.fontSize = document.documentElement.clientWidth / 15 + 'px';
+			}
+			window.onresize = setRem;
+			setRem();
+		</script>
+	</head>
+
+	<body>
+		<div class="wrap">
+
+			<div class="top"></div>
+
+			<div class="introduce">
+				<p class="intr">小小公益传播官是中国扶贫基金会发起的一项青少年公益活动。</p>
+				<p class="intr">活动倡导5-15岁青少年义务承担公益宣传的任务，激励城市青少年积极向身边的人宣传公益，同时在活动参与过程中锻炼自身的能力，收获公益教育。</p>
+				<div class="require">
+					<p>参与对象要求:</p>
+					<p>城市 &nbsp;&nbsp;&nbsp;&nbsp;<i>5-15</i><i class="younth">岁青少年</i></p>
+				</div>
+				<div class="func">
+					<p>活动形式:</p>
+					<p>线上报名。城市青少年通过 <i>加油一起成长</i>微信公众号线上报名形式参与活动。</p>
+				</div>
+				<div class="toShare">马上报名</div>
+			</div>
+		</div>
+
+		<!-- Dom Content End -->
+	</body>
+	<script src="libs/jquery/jquery.min.js"></script>
+	<script>
+		$(function() {
+			Init();
+
+			function Init() {
+				clock();
+				events();
+			}
+
+			function events() {
+
+			}
+
+			function clock() {
+				$('.toShare').click(function() {
+					location.href = 'answer.html';
+				})
+				return;
+			}
+		})
+	</script>
+
+</html>

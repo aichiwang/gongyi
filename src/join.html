@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+		<title>我的队伍</title>
+		<link rel="stylesheet" href="css/join.css?v=1.0">
+		<script>
+			function setRem() {
+				document.documentElement.style.fontSize = document.documentElement.clientWidth / 15 + 'px';
+			}
+			window.onresize = setRem;
+			setRem();
+		</script>
+	</head>
+
+	<body>
+		<div class="wrap">
+
+			<div class="top">
+				<input class="inp" type="text" name="" id="" value="" placeholder="请输入队伍名称" />
+				<img class="searchIcon" src="img/static/searchIcon.png"></img>
+				<div class="search">搜索</div>
+			</div>
+
+			<div class="teamlist">
+				<ul class="teamer">
+					<!--<li>
+						<img src="img/static/yang.jpg" />
+						<span class="nick">
+							<i class="teamName">卡姆昂小队</i>
+							<br />
+							<i class="teamId">10321211</i>
+						</span>
+						<span class="join"></span>
+					</li>-->
+				</ul>
+			</div>
+
+			<div class="alert">
+				<div class="cover"></div>
+				<div class="content">
+					<p class="tips1">你是否确认加入队伍 <span>卡木昂小队</span></p>
+					<p class="tips2">加入将不可修改。</p>
+					<div class="toJoin">确认加入</div>
+					<div class="toCreate">创建队伍</div>
+				</div>
+			</div>
+		</div>
+		
+
+		<!-- Dom Content End -->
+	</body>
+	<script src="libs/jquery/jquery.min.js"></script>
+	<script>
+		$(function() {
+			Init();
+
+			function Init() {
+				getlist();
+				events();
+			}
+
+			function getlist(name) {
+
+				$.ajax({
+					type: "get",
+					dataType: 'jsonp',
+					url: "http://cbg.mobilefoundation.org.cn/api/team/getlist",
+					data: {
+						page: 0,
+						perpage: 5,
+						name: name,
+					},
+					async: true,
+					success: function(data) {
+						console.log(data)
+						var str = '';
+						for(var i = 0; i < data.data.list.length; i++) {
+							str += '<li>' +
+								'<img src="' + data.data.list[i].headimgurl + '" />' +
+								'<span class="nick">' +
+								'<i class="teamName">' + data.data.list[i].name + '</i>' +
+								'<br />' +
+								'<i class="teamId">' + data.data.list[i].id + '</i>' +
+								'</span>' +
+								(data.data.list[i].is_joined ==1?'<span class="hasjoin">已加入</span>':('<span class="join" data-id="' + data.data.list[i].id + '"></span>'))+	
+								'</li>'
+						}
+						$('.teamer').html(str)
+					}
+				});
+			}
+
+			function events() {
+
+				$('.search').click(function() {
+					getlist($('.inp').val())
+				})
+				$('.teamer').on('click', '.join', function() {
+					$.ajax({
+						type: "get",
+						dataType: 'jsonp',
+						url: "http://cbg.mobilefoundation.org.cn/api/team/join",
+						data: {
+							tid: $(this).data('id'),
+//							uid: 8,
+						},
+						async: true,
+						success: function(data) {
+							globalMes( data.msg)
+						}
+					});
+				})
+			}
+			
+			function globalMes(txt){
+				$('body').append('<div class="globalmes">'+txt+'</div>')
+				setTimeout(function(){
+					$('.globalmes').remove();
+				},2000)
+			}
+		})
+	</script>
+
+</html>

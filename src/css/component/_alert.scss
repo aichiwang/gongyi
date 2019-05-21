@@ -1,0 +1,130 @@
+@charset "UTF-8";
+
+.alert {
+  position: fixed;
+  width: 325px;
+  height: 190px;
+  background: #fff url("../img/static/alertBg.jpg") no-repeat center 14px;
+  //visibility: hidden;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  border: 1px solid #ECECED;
+  .alert-body {
+    .til{
+        margin-top: 25px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #000;
+    }
+    .til2{
+        margin-top: 0;
+    }
+    .txt{
+      display: inline-block;
+      line-height: 54px;
+    }
+    .close{
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        top: 10px;
+        right: 10px;
+        color: #000;
+    }
+    .rewards {
+        overflow: hidden;
+        width: 258px;
+        margin: 35px auto 0;
+        color: #000;
+        div {
+            display: inline-block;
+//          float: left;
+            margin: 0 15px;
+            text-align: center;
+            img {
+                width: 45px;
+                height: 45px;
+            }
+            span{
+                color: #ACACAC;
+            }
+        }
+    }
+    .tips{
+        margin-top: 45px;
+        color: #acacac;
+    }
+    .btn{
+        width: 106px;
+        height: 29px;
+        line-height: 29px;
+        color: #acacac;
+        margin: 15px auto 0;
+        background: url(../img/static/btnGrey.png) no-repeat;
+        cursor: pointer;
+    }
+  }
+}
+.alert.anchorVer{
+    height: 255px;
+}
+
+.confirm{
+  position: fixed;
+  width: 286px;
+  height: 144px;
+  border: 1px solid #42414A;
+  background: #2D2B36;
+  visibility: hidden;
+  color: #fff;
+  box-shadow: 0 0 5px #ccc;
+  .txt{
+    width: 286px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+    line-height: 30px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  .alert-footer {
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    .alert-btn0{
+      width: 98px;
+      height: 30px;
+      background:url('../img/static/pic.png') no-repeat 0px -27px;
+      float: left;
+      display: inline-block;
+      margin-left: 26px;
+      margin-right: 43px;
+    }
+    .alert-btn1{
+      width: 98px;
+      height: 30px;
+      background:url('../img/static/cancel.png') no-repeat;
+      float: left;
+      display: inline-block;
+      margin-left: 26px;
+      margin-right: 43px;
+    }
+    .alert-btn2{
+      width: 98px;
+      height: 30px;
+      background:url('../img/static/confirm.png') no-repeat;
+      float: left;
+      display: inline-block;
+    }
+    .alert-btn3{
+      width: 98px;
+      height: 30px;
+      background:url('../img/static/pic.png') no-repeat -101px -27px;
+      float: left;
+      display: inline-block;
+    }
+  }
+}

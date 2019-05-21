@@ -1,0 +1,210 @@
+@charset"UTF-8";
+@import "common/common";
+
+/*好友详情页*/
+
+.wrap {
+    color: #707070;
+    .top {
+        width: 13.8rem;
+        height: 7.54rem;
+        padding: 0.8rem 0.6rem 0;
+        overflow: hidden;
+        .portrait {
+            width: 3.6rem;
+            height: 3.6rem;
+            border-radius: 50%;
+            overflow: hidden;
+            float: left;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .top-l {
+            float: left;
+            width: 9.1rem;
+            margin: 0.5rem 0 0 0.48rem;
+            .nick {
+                font-size: 0.72rem;
+            }
+            .state {
+                font-size: 0.56rem;
+            }
+        }
+        .process {
+            position: absolute;
+            top: 6.1rem;
+            left: 1.5rem;
+            width: 11.6rem;
+            height: 0.26rem;
+            border-radius: 0.13rem;
+            background: #F2F2F2;
+            .processDet {
+                width: 20%;
+                height: 100%;
+                background: #45C8FC;
+                border-radius: 0.13rem;
+            }
+            .tip {
+                position: absolute;
+                top: -1.2rem;
+                left: 39%;
+                height: 0.8rem;
+                line-height: 0.8rem;
+                padding: 0 0.3rem;
+                color: #fff;
+                font-size: 0.48rem;
+                background: #46C8FC;
+                border-radius: 0.4rem;
+                transform: translate(-50%);
+                .trangle {
+                    border-style: solid;
+                    display: inline-block;
+                    border-width: 0.26rem 0.14rem;
+                    border-color: #35C3FB transparent transparent transparent;
+                    position: absolute;
+                    bottom: -0.46rem;
+                    left: 50%;
+                }
+            }
+        }
+        .score {
+            position: absolute;
+            top: 7rem;
+            right: 0.7rem;
+            font-size: 0.56rem;
+        }
+        .editBtn {
+            position: absolute;
+            right: 0.6rem;
+            width: 2.3rem;
+            height: 1.1rem;
+            border-radius: 0.54rem;
+            border: 1px solid #DBDBDB;
+            text-align: center;
+            line-height: 1.1rem;
+            font-size: 0.56rem;
+            color: #707070;
+        }
+    }
+    .teamlist {
+        position: relative;
+        width: 12.5rem;
+        height: 10.2rem;
+        padding: 0.8rem 0.6rem 0;
+        margin: 0.8rem auto 0;
+        border-radius: 0.4rem;
+        box-shadow: 0 0 0.5rem #ddd;
+        .teamer {
+            li {
+                margin-bottom: 0.6rem;
+                img {
+                    width: 2.4rem;
+                    height: 2.4rem;
+                    border-radius: 50%;
+                    vertical-align: middle;
+                }
+                .nick {
+                    font-size: 0.56rem;
+                    margin-left: 0.3rem;
+                }
+                .score {
+                    float: right;
+                    line-height: 2.4rem;
+                }
+            }
+        }
+    }
+    .bottom {
+        margin-top: 1rem;
+        text-align: center;
+        .toCenter,
+        .toInvite {
+            display: inline-block;
+            width: 6rem;
+            height: 1.84rem;
+            margin: 0.2rem;
+            border-radius: 0.9rem;
+            border: 2px solid #9CE0F2;
+            line-height: 1.84rem;
+            text-align: center;
+            color: #9CE0F2;
+            font-size: 0.64rem;
+        }
+        div.toInvite {
+            height: 1.9rem;
+            background: url(../img/static/share.png) no-repeat;
+            background-size: 100% 100%;
+            color: #fff;
+            border: none;
+        }
+    }
+    .alert {
+        //      display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        .cover {
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        .content,
+        .content2 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -5.25rem 0 0 -5.9rem;
+            width: 11.8rem;
+            height: 10.54rem;
+            background: #fff;
+            border-radius: 0.7rem;
+            text-align: center;
+            .tips1 {
+                margin-top: 1.7rem;
+                font-size: 0.56rem;
+                line-height: 1rem;
+                span {
+                    color: #6AD4FE;
+                }
+            }
+            .tips2 {
+                font-size: 0.56rem;
+                line-height: 1.1rem;
+            }
+            .tips3 {
+                font-size: 0.64rem;
+                color: #6AD4FE;
+                line-height: 1.2rem;
+            }
+            .tips4 {
+                margin-left: 1.76rem;
+                text-align: left;
+                font-size: 0.56rem;
+                line-height: 1.1rem;
+            }
+            .toJoin,.toInvite {
+                width: 6.8rem;
+                height: 1.9rem;
+                margin: 1.16rem auto 0;
+                border-radius: 0.95rem;
+                line-height: 1.9rem;
+                text-align: center;
+                background: url(../img/static/share.png) no-repeat;
+                background-size: 100% 100%;
+                color: #fff;
+            }
+            .toCreate{
+                margin-top: 1rem;
+                color: #9F9F9F;
+            }
+        }
+        .content2 {
+            padding-top: 1.6rem;
+            height: 9rem;
+        }
+    }
+}

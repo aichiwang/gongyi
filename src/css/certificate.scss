@@ -1,0 +1,81 @@
+@charset"UTF-8";
+@import "common/common";
+
+/*好友详情页*/
+
+.wrap {
+    color: #707070;
+    .level {
+        position: relative;
+        width: 11rem;
+        height: 16rem;
+        padding: 0.12rem;
+        margin: 1.76rem auto 0;
+        border-radius: 0.4rem;
+        box-shadow: 0 0 0.5rem #ddd;
+        .imgWrap {
+            width: 100%;
+            height: 12.5rem;
+            img {
+                width: 100%;
+                height: 100%;
+                border-top-left-radius: 0.4rem;
+                border-top-right-radius: 0.4rem;
+            }
+        }
+        .infoWrap {
+            color: #fff;
+            height: 3.5rem;
+            padding: 0 0.36rem 0 0.5rem;
+            border-bottom-left-radius: 0.4rem;
+            border-bottom-right-radius: 0.4rem;
+            background: #76D8FF;
+            overflow: hidden;
+            .left {
+                float: left;
+                margin-top: 0.5rem;
+                font-size: 0.56rem;
+                .nick {
+                    font-size: 0.8rem;
+                }
+            }
+            .right {
+                float: right;
+                width: 2.86rem;
+                height: 2.86rem;
+                background: #fff;
+                margin-top: 0.34rem;
+            }
+        }
+    }
+    .state {
+        margin: 0.64rem 0;
+        font-size: 0.52rem;
+        text-align: center;
+    }
+    .botBtn {
+        text-align: center;
+        .save,
+        .share {
+            display: inline-block;
+            width: 6.74rem;
+            height: 1.8rem;
+            border-radius: 0.9rem;
+            border: 2px solid #9CE0F2;
+            line-height: 1.8rem;
+            text-align: center;
+            color: #9CE0F2;
+            font-size: 0.64rem;
+        }
+        .save{
+            width: 4.18rem;
+        }
+        .share{
+            height: 1.9rem;
+            background: url(../img/static/share.png) no-repeat;
+            background-size: 100% 100%;
+            border: none;
+            color: #fff;
+        }
+    }
+}

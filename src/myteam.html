@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+		<title>我的队伍</title>
+		<link rel="stylesheet" href="css/myteam.css?v=1.0">
+		<script>
+			function setRem() {
+				document.documentElement.style.fontSize = document.documentElement.clientWidth / 15 + 'px';
+			}
+			window.onresize = setRem;
+			setRem();
+		</script>
+	</head>
+
+	<body>
+		<div class="wrap">
+
+			<div class="top">
+				<div class="portrait">
+					<img src="" />
+				</div>
+			</div>
+
+			<div class="team">
+				<p class="til">亲爱的<i class="nick"></i></p>
+				<p class="noteam">你尚未创建或参加任何队伍，请点击下方选择创建或加入团队，创建或加入成功后不可更改。</p>
+
+				<div class="toCreate">创建队伍</div>
+				<div class="toJoin">加入队伍</div>
+			</div>
+		</div>
+
+		<!-- Dom Content End -->
+	</body>
+	<script src="libs/jquery/jquery.min.js"></script>
+	<script>
+		$(function() {
+			Init();
+
+			function Init() {
+				getUserInfo();
+				events();
+			}
+			
+			function getUserInfo(){
+				$.ajax({
+					type:"get",
+					dataType:'jsonp',
+					url:"http://cbg.mobilefoundation.org.cn/api/team/getmyteam",
+					data:{
+//						uid:8
+					},
+					async:true
+				});
+			}
+			
+			function getUserInfo() {
+				$.ajax({
+					type: "get",
+					dataType: 'jsonp',
+					url: "http://cbg.mobilefoundation.org.cn/api/user/getuserinfo",
+					data: {
+//						uid: 8
+					},
+					async: true,
+					success: function(data) {
+						$('.nick').html( data.data.userinfo.name)
+					}
+				});
+			}
+
+			function events() {
+
+
+				$('.toCreate').click(function() {
+					location.href = 'create.html';
+				})
+				$('.toJoin').click(function() {
+					location.href = 'join.html';
+				})
+			}
+		})
+	</script>
+
+</html>

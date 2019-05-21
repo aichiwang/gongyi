@@ -1,0 +1,108 @@
+@charset"UTF-8";
+@import "common/common";
+
+/*好友详情页*/
+
+html,
+body {
+    height: 100%;
+}
+
+.wrap {
+    color: #707070;
+    width: 100%;
+    height: 100%;
+    background: url(../img/static/indexBg.jpg) no-repeat;
+    background-size: 100% 100%;
+    .indexTil {
+        position: absolute;
+        top: 0.4rem;
+        left: 0.8rem;
+        width: 7.5rem;
+        height: 1.72rem;
+        animation: til 2s;
+        animation-fill-mode: forwards;
+    }
+    .indexStory {
+        position: absolute;
+        top: 3rem;
+        left: 1.4rem;
+        width: 12.12rem;
+        height: 8.4rem;
+        animation: story 2s linear 3s;
+        animation-fill-mode: forwards;
+        opacity: 0;
+    }
+    .indexRen {
+        position: absolute;
+        bottom: 3.2rem;
+        left: 1rem;
+        width: 6.98rem;
+        height: 10.08rem;
+        animation: ren 2s linear 0.5s;
+        animation-fill-mode: forwards;
+    }
+    .indexTime {
+        position: absolute;
+        bottom: 10.4rem;
+        left: 1.5rem;
+        width: 3.62rem;
+        height: 2.46rem;
+        animation: time 1s linear 2s;
+        animation-fill-mode: forwards;
+        opacity: 0;
+    }
+    .indexBm{
+        position: absolute;
+        bottom: 2.18rem;
+        left: 4rem;
+        width: 6.8rem;
+        height: 1.9rem;
+        animation: bm 1s linear 3s;
+        animation-fill-mode: forwards;
+        opacity: 0;
+    }
+}
+
+@keyframes til {
+    from {
+        top: -1.72rem;
+    }
+    to {
+        top: 1rem;
+    }
+}
+@keyframes story {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes ren {
+    from {
+        left: 1rem;
+    }
+    to {
+        left: 4rem;
+    }
+}
+@keyframes time {
+    from {
+        opacity: 0;
+        left: 1.5rem;
+    }
+    to {
+        opacity: 1;
+        left: 0.5rem;
+    }
+}
+@keyframes bm {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

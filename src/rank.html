@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+		<title>排行榜</title>
+		<link rel="stylesheet" href="css/rank.css?v=1.0">
+		<script>
+			function setRem() {
+				document.documentElement.style.fontSize = document.documentElement.clientWidth / 15 + 'px';
+			}
+			window.onresize = setRem;
+			setRem();
+		</script>
+	</head>
+
+	<body>
+		<div class="wrap">
+
+			<div class="top">
+				<div class="portrait">
+					<img src="" />
+				</div>
+				<div class="userInfo">
+					<span>个人排名  <i class="grRank"></i></span>
+					<span>团队排名  <i class="teamRank"></i></span>
+				</div>
+			</div>
+
+			<div class="rank">
+				<div class="rankTil">
+					<span class="cur">个人排行榜<i></i></span>
+					<span>团队排行榜<i></i></span>
+					<span>城市对抗榜<i></i></span>
+				</div>
+				<ul class="rankDetail">
+					<!--<li class="rankItem personal">
+						<i class="rankNum NO2">2</i>
+						<img src="img/static/no2.png" />
+						<span class="name">卡姆昂小队</span>
+						<span class="score">成绩: 96</span>
+					</li>-->
+				</ul>
+			</div>
+
+			<div class="toCenter">个人中心</div>
+		</div>
+
+		<!-- Dom Content End -->
+	</body>
+	<script src="libs/jquery/jquery.min.js"></script>
+	<script>
+		$(function() {
+			Init();
+
+			function Init() {
+				getUserInfo();
+				getMyRankInfo();
+				events();
+			}
+
+			function events() {
+
+				$('.rankTil').on('click', 'span', function() {
+					$(this).addClass('cur').siblings().removeClass('cur')
+					if($(this).index() == 0) {
+						getRankInfo();
+					} else if($(this).index() == 1) {
+						getRankInfo('team');
+					} else {
+						getRankInfo('city');
+					}
+				})
+
+				$('.toCenter').click(function() {
+					location.href = 'center.html';
+				})
+			}
+
+			function getUserInfo() {
+				$.ajax({
+					type: "get",
+					dataType: 'jsonp',
+					url: "http://cbg.mobilefoundation.org.cn/api/user/getuserinfo",
+					data: {
+//						uid: 8
+					},
+					async: true,
+					success: function(data) {
+//						console.log(data)
+						$('.portrait img').attr('src', data.data.userinfo.headimgurl)
+						window.uinfo = data.data.userinfo
+						getRankInfo();
+					}
+				});
+			}
+			
+			function getMyRankInfo() {
+				$.ajax({
+					type: "get",
+					dataType: 'jsonp',
+					url: "http://cbg.mobilefoundation.org.cn/api/rank/getmyrankinfo",
+					data: {
+//						uid: 8
+					},
+					async: true,
+					success: function(data) {
+//						console.log(data)
+						$('.grRank').html(data.data.person_rank)
+						$('.teamRank').html(data.data.team_rank)
+					}
+				});
+			}
+
+			function getRankInfo(rqType) {
+				$.ajax({
+					type: "get",
+					dataType: 'jsonp',
+					url: "http://cbg.mobilefoundation.org.cn/api/rank",
+					data: {
+						type: rqType,
+						city: window.uinfo.city,
+						page: 0,
+						perpage: 5,
+					},
+					async: true,
+					success: function(data) {
+						console.log(data)
+						var str = '';
+						for(var i = 0; i < data.data.rank_list.length; i++) {
+							if(rqType == 'team') {
+								str += '<li class="rankItem teamnal">'+
+										'<i class="rankNum NO' + (i + 1) + '">' + (i + 1) + '</i>'+
+										'<span class="name">' + data.data.rank_list[i].name + '</span>'+
+										'<span class="members">人数: ' + data.data.rank_list[i].user_count + '</span>'+
+										'<span class="score">成绩: ' + data.data.rank_list[i].score + '</span>'+
+									'</li>'
+					
+							} else if(rqType == 'city') {
+								str += '<li class="rankItem personal">' +
+									'<i class="rankNum NO' + (i + 1) + '">' + (i + 1) + '</i>' +
+									'<img src="' + data.data.rank_list[i].head_url + '" />' +
+									'<span class="name">' + data.data.rank_list[i].name + '</span>' +
+									'<span class="score">成绩: ' + data.data.rank_list[i].score + '</span>' +
+									'</li>'
+							} else {
+								str += '<li class="rankItem personal">' +
+									'<i class="rankNum NO' + (i + 1) + '">' + (i + 1) + '</i>' +
+									'<img src="' + data.data.rank_list[i].head_url + '" />' +
+									'<span class="name">' + data.data.rank_list[i].name + '</span>' +
+									'<span class="score">成绩: ' + data.data.rank_list[i].score + '</span>' +
+									'</li>'
+							}
+						}
+						$('.rankDetail').html(str)
+					}
+				});
+			}
+		})
+	</script>
+
+</html>

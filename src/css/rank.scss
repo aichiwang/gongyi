@@ -1,0 +1,159 @@
+@charset"UTF-8";
+@import "common/common";
+/*好友详情页*/
+
+.wrap{
+    .top{
+        width: 15rem;
+        height: 10rem;
+        color: #fff;
+        background: url(../img/static/centerBg.png) no-repeat;
+        background-size: contain;
+        overflow: hidden;
+        .portrait{
+            width: 3.6rem;
+            height: 3.6rem;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 0.14rem solid #C6EDF7;
+            margin:  1.28rem auto 0;
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .userInfo{
+            margin-top: 0.8rem;
+            font-size: 0.56rem;
+            text-align: center;
+            span{
+                margin: 0 1.32rem;
+            }
+        }
+    }
+    
+    .rank{
+        position: relative;
+        width: 13.7rem;
+        height: 12.6rem;
+        margin: -2.5rem auto 0;
+        border-radius: 0.4rem;
+        box-shadow: 0 0 0.5rem #ddd;
+        background: #fff;
+        overflow: hidden;
+        .rankTil{
+            margin: 0.8rem 0 1.6rem;
+            text-align: center;
+            font-size: 0.6rem;
+            color: #707070;
+            span{
+                margin:  0 0.6rem;
+                position: relative;
+                i{
+                    display: none;
+                    position: absolute;
+                    bottom: -0.24rem;
+                    left: 50%;
+                    margin-left: -0.3rem;
+                    width: 0.6rem;
+                    height: 0.12rem;
+                    border-radius: 0.06rem;
+                    background: #9CE1F1;
+                }
+            }
+            span.cur{
+                color: #9CE1F1;
+                i{
+                    display: inline-block;
+                }
+            }
+        }
+        .rankDetail{
+            margin: 0 0.5rem;
+            .rankItem{
+                margin-bottom: 0.36rem;
+                height: 1.5rem;
+                .rankNum{
+                    display: inline-block;
+                    width: 1.02rem;
+                    height: 1.02rem;
+                    text-align: center;
+                    line-height: 1.02rem;
+                    margin-right: 0.5rem;
+                    margin-top: 0.2rem;
+                    vertical-align: middle;
+                    position: relative;
+                }
+                .rankNum.NO1{
+                    background: url(../img/static/no1.png);
+                    background-size: contain;
+                    color: #FFF798;
+                }
+                .rankNum.NO2{
+                    background: url(../img/static/no2.png);
+                    background-size: contain;
+                    color: #E4EFF7;
+                }
+                .rankNum.NO3{
+                    background: url(../img/static/no3.png);
+                    background-size: contain;
+                    color: #EDCCB7;
+                }
+                .name{
+//                  text-align: center;
+                    display: inline-block;
+                    width: 4rem;
+                    overflow: hidden;
+                    vertical-align: middle;
+                    line-height: 1.5rem;
+                }
+                .members{
+                    text-align: center;
+                    display: inline-block;
+                    width: 4rem;
+                    overflow: hidden;
+                    vertical-align: middle;
+                    line-height: 1.5rem;
+                    
+                }
+                .score{
+                    text-align: center;
+                    display: inline-block;
+                    width: 2.6rem;
+                    overflow: hidden;
+                    vertical-align: middle;
+                    position: absolute;
+                    line-height: 1.5rem;
+                    right: 0.5rem;
+                }
+                img{
+                    vertical-align: middle;
+                    height: 1.5rem;
+                    margin-right: 0.5rem;
+                    border-radius: 50%;
+                }
+            }
+            .personal{
+                .name{
+                    margin-right: 2rem;
+                }
+            }
+            .teamnal{
+//              display: none;
+            }
+        }
+        
+    }
+    
+    .toCenter{
+        width: 6.74rem;
+        height: 1.8rem;
+        margin: 1.12rem auto 0;
+        border-radius: 0.9rem;
+        border: 2px solid #9CE0F2;
+        line-height: 1.8rem;
+        text-align: center;
+        color: #9CE0F2;
+        font-size: 0.64rem;
+    }
+}

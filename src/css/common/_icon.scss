@@ -1,0 +1,5 @@
+@charset "UTF-8";
+$icon-layout:smart;
+$icon-sprite-dimensions: true;
+@import"sprite/icons/*.png";
+@include all-icons-sprites;

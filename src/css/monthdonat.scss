@@ -1,0 +1,198 @@
+@charset"UTF-8";
+@import "common/common";
+
+/*好友详情页*/
+
+.wrap {
+    color: #707070;
+    .tab {
+        padding: 1.1rem 1.4rem 0.9rem;
+        position: relative;
+        span {
+            font-size: 0.6rem;
+            margin-right: 1.4rem;
+            position: relative;
+            i {
+                display: none;
+                position: absolute;
+                bottom: -0.2rem;
+                left: 50%;
+                width: 0.6rem;
+                height: 0.12rem;
+                margin-left: -0.3rem;
+                border-radius: 0.06rem;
+                background: #81CFE4;
+            }
+        }
+        span.cur {
+            font-weight: bold;
+            color: #81CFE4;
+            i {
+                display: block;
+            }
+        }
+        .newsub {
+            position: absolute;
+            top: 0.9rem;
+            right: 0.9rem;
+            width: 3.8rem;
+            height: 1.4rem;
+            border-radius: 0.7rem;
+            background: #35C3FB;
+            text-align: center;
+            line-height: 1.4rem;
+            color: #fff;
+            font-size: 0.56rem;
+        }
+    }
+    .sublist,
+    .hasPass {
+        li {
+            position: relative;
+            width: 12.5rem;
+            height: 2.64rem;
+            padding: 0 0.6rem;
+            margin: 0 auto;
+            border-radius: 0.4rem;
+            box-shadow: 0 0 0.5rem #ddd;
+            margin-bottom: 0.4rem;
+            font-size: 0.56rem;
+            line-height: 2.64rem;
+            .nick {
+                margin-left: 0.3rem;
+            }
+            .phone {
+                margin-left: 1rem;
+                color: #A6A6A6;
+            }
+            .donation {
+                float: right;
+                color: #FFA92C;
+            }
+            .delete {
+                float: right;
+                color: #A6A6A6;
+            }
+            .comfirmDel {
+                display: none;
+                position: absolute;
+                top: 0;
+                right: -3rem;
+                padding: 0 0.6rem;
+                background: #FD4040;
+                color: #fff;
+                border-bottom-right-radius: 0.4rem;
+                border-top-right-radius: 0.4rem;
+            }
+        }
+        li.active {
+            left: -3rem;
+            .delete {
+                display: none;
+            }
+            .comfirmDel {
+                display: block;
+            }
+        }
+    }
+    .hasPass{
+        display: none;
+    }
+    .bottom {
+        margin-top: 3rem;
+        text-align: center;
+        .toCenter {
+            display: inline-block;
+            width: 6rem;
+            height: 1.84rem;
+            margin: 0.2rem;
+            border-radius: 0.9rem;
+            border: 2px solid #9CE0F2;
+            line-height: 1.84rem;
+            text-align: center;
+            color: #9CE0F2;
+            font-size: 0.64rem;
+        }
+    }
+    .alert {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        .cover {
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -5.25rem 0 0 -5.9rem;
+            padding-top: 1.6rem;
+            width: 11.8rem;
+            height: 10.4rem;
+            background: #fff;
+            border-radius: 0.7rem;
+            text-align: center;
+            input,
+            .dateCover {
+                width: 8rem;
+                height: 1.6rem;
+                border-radius: 0.8rem;
+                background: #F2F2F2;
+                margin-bottom: 0.68rem;
+                padding: 0 0.8rem;
+            }
+            input[type=date] {
+                position: absolute;
+                visibility: hidden;
+                top: 0;
+            }
+            .dateCover {
+                margin: 0 auto;
+                text-align: left;
+                line-height: 1.6rem;
+                position: relative;
+                i {
+                    position: absolute;
+                    right: 0.4rem;
+                    top: 0.62rem;
+                    border-style: solid;
+                    border-width: 0.4rem 0.3rem;
+                    border-color: #C0C0C0 transparent transparent transparent;
+                }
+                input{
+                    position: absolute;
+                    left: 0;
+                    visibility: visible;
+                }
+                .coverInp{
+                    position: absolute;
+                    z-index: 1;
+                }
+            }
+            .toInvite {
+                width: 6.8rem;
+                height: 1.9rem;
+                margin: 1.16rem auto 0;
+                border-radius: 0.95rem;
+                border: 2px solid #9CE0F2;
+                line-height: 1.9rem;
+                text-align: center;
+                color: #9CE0F2;
+            }
+            .close{
+                position: absolute;
+                top: 0.48rem;
+                right: 0.54rem;
+                width: 0.6rem;
+                height: 0.6rem;
+                background: url(../img/static/close.png);
+                background-size: contain;
+            }
+        }
+    }
+}

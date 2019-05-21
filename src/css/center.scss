@@ -1,0 +1,112 @@
+@charset"UTF-8";
+@import "common/common";
+/*好友详情页*/
+
+.wrap{
+    .top{
+        width: 15rem;
+        height: 10rem;
+        color: #fff;
+        background: url(../img/static/centerBg.png) no-repeat;
+        background-size: contain;
+        overflow: hidden;
+        .portrait{
+            width: 3.6rem;
+            height: 3.6rem;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 0.14rem solid #C6EDF7;
+            margin:  1.28rem auto 0;
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .nick{
+            margin-top: 0.2rem;
+            text-align: center;
+            font-size: 0.72rem;
+        }
+        .userNum{
+            font-size: 0.72rem;
+            text-align: center;
+        }
+        .userInfo{
+            margin-top: 0.8rem;
+            font-size: 0.56rem;
+            text-align: center;
+            span{
+                margin: 0 1.32rem;
+            }
+        }
+    }
+    
+    .level{
+        position: relative;
+        width: 13.7rem;
+        height: 4.2rem;
+        margin: 0.8rem auto 0;
+        border-radius: 0.4rem;
+        box-shadow: 0 0 0.5rem #ddd;
+        .levelWrap{
+            text-align: center;
+            .levelItem{
+                width: 3rem;
+                vertical-align: text-top;
+                margin: 0.6rem 0.2rem 0.6rem 0rem;
+                text-align: center;
+                display: inline-block;
+                img{
+                    width: 0.96rem;
+                    height: 0.96rem;
+                }
+                .trangle{
+                    margin: 0.6rem 0 0.16rem;
+                    border-style: solid;
+                    display: inline-block;
+                    border-width: 0.26rem 0.14rem;
+                    border-color: transparent transparent #35C3FB transparent;
+                }
+            }
+            .levelItem:last-child{
+                margin-right: 0;
+            }
+        }
+        .process{
+            position: absolute;
+            top: 2rem;
+            left: 0.5rem;
+            width: 12.6rem;
+            height: 0.26rem;
+            border-radius: 0.13rem;
+            background: #F2F2F2;
+            .processDet{
+                width: 60%;
+                height: 100%;
+                background: #45C8FC;
+                border-radius: 0.13rem;
+            }
+        }
+    }
+    
+    .bottom{
+        overflow: hidden;
+        padding: 1rem 1.2rem 0;
+        li{
+            float: left;
+            width: 2.8rem;
+            margin: 0 2rem 1.2rem 0;
+            text-align: center;
+            img{
+                width: 1.56rem;
+                height: 1.46rem;
+            }
+            p{
+                font-size: 0.56rem;
+            }
+        }
+        li:nth-child(3n){
+            margin: 0 0 1rem 0;
+        }
+    }
+}

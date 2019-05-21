@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+		<title>资料编辑</title>
+		<link rel="stylesheet" href="css/edit.css?v=1.0">
+		<script>
+			function setRem() {
+				document.documentElement.style.fontSize = document.documentElement.clientWidth / 15 + 'px';
+			}
+			window.onresize = setRem;
+			setRem();
+		</script>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="level">
+				<ul class="dataList">
+					<li>
+						<span>姓名</span>
+						<input type="text" name="" id="uname" value="" placeholder="制作工作证，不可修改" />
+					</li>
+					<li>
+						<span>性别</span>
+						<label><input name="sex" type="radio" value="女" />女 </label>
+						<label><input name="sex" type="radio" value="男" />男 </label>
+					</li>
+					<li>
+						<span>年龄</span>
+						<select name="" id="uage">
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+						</select>
+					</li>
+					<li>
+						<span>收件人</span>
+						<input type="text" name="" id="receiver" value="" placeholder="用于邮寄活动物料" />
+					</li>
+					<li>
+						<span>电话</span>
+						<input type="text" name="" id="phone" value="" placeholder="用于邮寄活动物料" />
+					</li>
+					<li>
+						<span>所在地区</span>
+						<select id="province_selector" class="bd-filter__select"></select>
+						<select id="city_selector" class="bd-filter__select"></select>
+						<select id="district_selector" class="bd-filter__select"></select>
+					</li>
+					<li>
+						<span>详细地址</span>
+						<input type="text" name="" id="detailArea" value="" placeholder="如 道路、门牌、小区、楼号等" />
+					</li>
+				</ul>
+				<input class="comfirmBtn" type="submit" value="确认修改" />
+			</div>
+		</div>
+
+		<!-- Dom Content End -->
+	</body>
+	<script src="libs/jquery/jquery.min.js"></script>
+	<script src="libs/areas.js"></script>
+	<script>
+		Init();
+
+		function Init() {
+
+			addressInit('province_selector', 'city_selector', 'district_selector');
+
+			getUserInfo();
+
+			$('.comfirmBtn').on('click', function() {
+				var uname = $('#uname').val();
+				var sex = $('[name=sex]:checked').val();
+				var uage = $('#uage').val();
+				var receiver = $('#receiver').val();
+				var phone = $('#phone').val();
+				var province = $('#province_selector').val();
+				var city = $('#city_selector').val();
+				var district = $('#district_selector').val();
+				var detailArea = $('#detailArea').val();
+
+				if(!uname) {
+					globalMes('请输入姓名')
+				} else if(!sex) {
+					globalMes('请选择性別')
+				} else if(!uage) {
+					globalMes('请选择年齡')
+				} else if(!receiver) {
+					globalMes('请填写收件人')
+				} else if(!phone) {
+					globalMes('请填写手机号')
+				} else if(!province) {
+					globalMes('请选择省')
+				} else if(!city) {
+					globalMes('请选择市')
+				} else if(!detailArea) {
+					globalMes('请输入详细地址')
+				} else {
+					$.ajax({
+						type: "get",
+						dataType: 'jsonp',
+						url: "http://cbg.mobilefoundation.org.cn/api/user/edit",
+						data: {
+							name: uname,
+							sex: sex,
+							age: uage,
+							receiver_name: receiver,
+							receiver_phone: phone,
+							res_province: province,
+							res_city: city,
+							address: detailArea
+						},
+						async: true,
+						success: function(data) {
+							console.log(data)
+							globalMes(data.msg)
+							setTimeout(function() {
+								//						location.href = 'center.html'
+							}, 3000)
+						}
+					});
+				}
+			})
+
+			function globalMes(txt) {
+				$('body').append('<div class="globalmes">' + txt + '</div>')
+				setTimeout(function() {
+					$('.globalmes').remove();
+				}, 2000)
+			}
+
+			function getUserInfo() {
+				$.ajax({
+					type: "get",
+					dataType: 'jsonp',
+					url: "http://cbg.mobilefoundation.org.cn/api/user/getuserinfo",
+					data: {
+						//				uid: 8
+					},
+					async: true,
+					success: function(data) {
+						console.log(data)
+						$('#uname').val(data.data.userinfo.name);
+						$('#uage').find('[value=' + data.data.userinfo.age + ']').attr('selected', 'selected');
+						$('#receiver').val(data.data.userinfo.receiver_name);
+						$('#phone').val(data.data.userinfo.receiver_phone);
+						$('#province_selector [value=' + data.data.userinfo.res_province + ']').attr('selected', 'selected')
+						$('#province_selector').trigger('change')
+						$('#city_selector [value=' + data.data.userinfo.res_city + ']').attr('selected', 'selected')
+						$('#city_selector').trigger('change')
+//						$('#province_selector [value=' + data.data.userinfo.receiver_phone.slice(0, 2) + ']').attr('selected', 'selected')
+
+						$('[value=' + data.data.userinfo.sex + ']').attr('checked', 'checked');
+						$('#detailArea').val(data.data.userinfo.address);
+					}
+				});
+			}
+
+		}
+	</script>
+
+</html>

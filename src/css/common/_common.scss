@@ -1,0 +1,290 @@
+@charset "UTF-8";
+
+//@import "icon";
+//@import "scroll";
+
+* {
+  vertical-align: baseline;
+  font-weight: inherit;
+  font-family: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  outline: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+body {
+//background: #2D2B36;
+//color: #fff;
+  font-size: 14px;
+  font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding-bottom: 1rem;
+}
+
+address, caption, cite, code, dfn, em, strong, th, var, i {
+  font-weight: normal;
+  font-style: normal;
+}
+
+a, a:link, a:visited, a:hover, a:active {
+  color: #333;
+  text-decoration: none;
+}
+
+a img, :link img, :visited img {
+  border: 0px;
+  outline:none;
+}
+a:focus{outline:none;}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+label, button {
+  cursor: pointer;
+}
+
+fieldset, img {
+  border: 0;
+}
+
+.posr {
+  position: relative;
+}
+
+.posa {
+  position: absolute;
+}
+
+.posf {
+  position: fixed;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.clear {
+  clear: both;
+  font-size: 0;
+  line-height: 0;
+  height: 0;
+}
+
+.dpblock {
+  display: block;
+}
+
+.dpinblock {
+  display: inline-block;
+}
+
+.dpin {
+  display: inline;
+}
+
+.vb {
+  visibility: visible;
+}
+
+.invb {
+  visibility: hidden;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+// 瓒呭嚭闅愯棌鏂囧瓧鍙樻垚..
+.overflow_dot {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.vtop {
+  vertical-align: top;
+}
+
+.vmiddle {
+  vertical-align: middle;
+}
+
+.vbottom {
+  vertical-align: bottom;
+}
+
+.focus {
+//color: #333;
+}
+
+.blur {
+  color: #ccc;
+}
+
+.error {
+  border: 1px solid #f77f7f;
+}
+
+.wrap {
+  margin: 0 auto;
+}
+
+.icons{
+    display: inline-block;
+}
+
+//margin 1,2,3,4,5,6,7,8,9,10,15,20,30,40,50,100
+@each $num in 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 30, 40, 50, 100 {
+  .#{'ml'+$num} {
+    margin-left: $num * 1px;
+  }
+}
+
+@each $num in 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 30, 40, 50, 100 {
+  .#{'mt'+$num} {
+    margin-top: $num * 1px;
+  }
+}
+
+@each $num in 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 30, 40, 50, 100 {
+  .#{'mr'+$num} {
+    margin-right: $num * 1px;
+  }
+}
+
+@each $num in 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 30, 40, 50, 100 {
+  .#{'mb'+$num} {
+    margin-bottom: $num * 1px;
+  }
+}
+
+//padding 1,2,3,4,5,6,7,8,9,10,15,20,30,40,50,100
+
+@each $num in 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 30, 40, 50, 100 {
+  .#{'pl'+$num} {
+    padding-left: $num * 1px;
+  }
+}
+
+@each $num in 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 30, 40, 50, 100 {
+  .#{'pt'+$num} {
+    padding-top: $num * 1px;
+  }
+}
+
+@each $num in 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 30, 40, 50, 100 {
+  .#{'pr'+$num} {
+    padding-right: $num * 1px;
+  }
+}
+
+@each $num in 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 30, 40, 50, 100 {
+  .#{'pb'+$num} {
+    padding-bottom: $num * 1px;
+  }
+}
+
+// width
+@each $num in 10, 15, 20, 30, 40, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 {
+  .#{'wd'+$num} {
+    width: $num * 1px;
+  }
+}
+
+//height
+@each $num in 10, 15, 20, 30, 40, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 {
+  .#{'hg'+$num} {
+    height: $num * 1px;
+  }
+}
+
+//font-size
+@each $num in 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36 {
+  .#{'fs'+$num} {
+    font-size: $num * 1px;
+  }
+}
+
+// line-height
+@each $num in 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 50, 60 {
+  .#{'lh'+$num} {
+    line-height: $num * 1px;
+  }
+}
+
+//Border
+@each $num in 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 {
+  .#{'bd'+$num} {
+    border: $num * 1px;
+  }
+}
+
+.globalmes{
+    width: 4rem;
+    position: absolute;
+    top: 45%;
+    text-align: center;
+    left: 50%;
+    margin-left: -3rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    color: #fff;
+    background: rgba(0,0,0,0.5);
+}
+
+select{
+    background-color:transparent; 
+    border-color:transparent;
+    -webkit-appearance: none;
+    text-align: center;
+}
+input[type=date]{
+    -webkit-appearance:none
+}
+
+#province_selector,
+#city_selector,
+#district_selector{
+    width: 2rem;
+    position: absolute;
+}
+
+#province_selector{
+    right: 4.5rem;
+}
+#city_selector{
+    right: 2.5rem;
+}
+#district_selector{
+    right: 0.5rem;
+}
+
+.shareCover{
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.5);
+    img{
+        width: 100%;
+    }
+}

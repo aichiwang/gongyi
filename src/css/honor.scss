@@ -1,0 +1,111 @@
+@charset"UTF-8";
+@import "common/common";
+
+/*好友详情页*/
+
+.wrap {
+    .top {
+        width: 15rem;
+        height: 10rem;
+        color: #fff;
+        background: url(../img/static/centerBg.png) no-repeat;
+        background-size: contain;
+        overflow: hidden;
+        .portrait {
+            width: 3.6rem;
+            height: 3.6rem;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 0.14rem solid #C6EDF7;
+            margin: 1.28rem auto 0;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .nick {
+            margin-top: 0.2rem;
+            text-align: center;
+            font-size: 0.72rem;
+        }
+        .userNum {
+            font-size: 0.72rem;
+            text-align: center;
+        }
+        .userInfo {
+            margin-top: 0.8rem;
+            font-size: 0.56rem;
+            text-align: center;
+            span {
+                margin: 0 1.32rem;
+            }
+        }
+    }
+    .compose {
+        position: relative;
+        width: 13.7rem;
+        height: 8.6rem;
+        margin: 0.8rem auto 0;
+        border-radius: 0.4rem;
+        box-shadow: 0 0 0.5rem #ddd;
+        overflow: hidden;
+        .composeWrap {
+            width: 3.8rem;
+            height: 3.8rem;
+            margin: 3.12rem auto 0;
+            position: relative;
+            .composeBtn {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+//              background: url(../img/static/compose.png) no-repeat;
+                background: lightgrey;
+                background-size: contain;
+                text-align: center;
+                line-height: 3.8rem;
+                font-size: 0.64rem;
+                color: #fff;
+            }
+            .tolight {
+                width: 3rem;
+                height: 2rem;
+                position: absolute;
+                text-align: center;
+                color: #49C9FC;
+                img {
+                    width: 1rem;
+                    height: 1rem;
+                }
+            }
+            .level1 {
+                top: 1rem;
+                left: -4rem;
+            }
+            .level2 {
+                top: -2.2rem;
+                left: 50%;
+                margin-left: -1.5rem;
+            }
+            .level3 {
+                top: 1rem;
+                right: -4rem;
+            }
+        }
+        .explain {
+            text-align: center;
+            margin-top: 0.44rem;
+            color: #A5A5A5;
+        }
+    }
+    .toCenter {
+        width: 6.74rem;
+        height: 1.8rem;
+        margin: 1.12rem auto 0;
+        border-radius: 0.9rem;
+        border: 2px solid #9CE0F2;
+        line-height: 1.8rem;
+        text-align: center;
+        color: #9CE0F2;
+        font-size: 0.64rem;
+    }
+}

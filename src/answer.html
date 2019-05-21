@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+		<title>答题</title>
+		<link rel="stylesheet" href="css/answer.css?v=1.0">
+		<script>
+			function setRem() {
+				document.documentElement.style.fontSize = document.documentElement.clientWidth / 15 + 'px';
+			}
+			window.onresize = setRem;
+			setRem();
+		</script>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="question">
+				<i class="label">01</i>
+				<p class="ques">几岁的小朋友可以参加活动？</p>
+				<p class="answer">A.3-12岁 <img src="img/static/gou.png" /></p>
+				<p class="answer">B.5-15岁 <img src="img/static/gou.png" /></p>
+				<p class="answer sta">C.6-15岁 <img src="img/static/gou.png" /></p>
+				<p class="answer">D.6-18岁<img src="img/static/gou.png" /></p>
+			</div>
+			<div class="question">
+				<i class="label">02</i>
+				<p class="ques">需几人组队才能开展活动？</p>
+				<p class="answer">A.5人以上<img src="img/static/gou.png" /></p>
+				<p class="answer sta">B.10人以上<img src="img/static/gou.png" /></p>
+				<p class="answer">C.15人以上<img src="img/static/gou.png" /></p>
+				<p class="answer">D.20人以上<img src="img/static/gou.png" /></p>
+			</div>
+			<div class="question">
+				<i class="label">03</i>
+				<p class="ques">本季活动主题为？</p>
+				<p class="answer">A.把爱大声喊出来<img src="img/static/gou.png" /></p>
+				<p class="answer">B.城乡儿童一对一<img src="img/static/gou.png" /></p>
+				<p class="answer">C.做孩子们的盖世英雄<img src="img/static/gou.png" /></p>
+				<p class="answer sta">D.讲故事给你听<img src="img/static/gou.png" /></p>
+			</div>
+			<div class="question">
+				<i class="label">04</i>
+				<p class="ques">怎样才能拿到证书？</p>
+				<p class="answer sta">A.通关三道关卡<img src="img/static/gou.png" /></p>
+				<p class="answer">B.邀请50人扫描二维码<img src="img/static/gou.png" /></p>
+				<p class="answer">C.积分达到100分<img src="img/static/gou.png" /></p>
+				<p class="answer">D.积分达到300分<img src="img/static/gou.png" /></p>
+			</div>
+			<div class="question">
+				<i class="label">05</i>
+				<p class="ques">小小公益传播官邀请公众关注的是什么公益行动？</p>
+				<p class="answer">A.全民公益<img src="img/static/gou.png" /></p>
+				<p class="answer sta">B.加油一起成长<img src="img/static/gou.png" /></p>
+				<p class="answer">C.善行者<img src="img/static/gou.png" /></p>
+				<p class="answer">D.善行100<img src="img/static/gou.png" /></p>
+			</div>
+			<div class="question">
+				<i class="label">06</i>
+				<p class="ques">加油一起成长关注的是什么问题？</p>
+				<p class="answer">A.乡村儿童教育问题<img src="img/static/gou.png" /></p>
+				<p class="answer sta">B.城乡儿童成长<img src="img/static/gou.png" /></p>
+				<p class="answer">C.城乡儿童贫困差距<img src="img/static/gou.png" /></p>
+				<p class="answer">D.城市儿童公益教育<img src="img/static/gou.png" /></p>
+			</div>
+			<div class="toCreate">确认提交</div>
+		</div>
+
+		<div class="alert clock">
+			<div class="cover"></div>
+			<div class="content">
+				<p class="tips1">开始报名前，请先完成答题考验！</p>
+				<div class="timer"></div>
+			</div>
+		</div>
+		<div class="alert retry">
+			<div class="cover"></div>
+			<div class="content2">
+				<p class="tips1">答题成绩</p>
+				<p class="tips2"><i>80</i>分</p>
+				<p class="tips3">请仔细阅读活动介绍</p>
+				<div class="searchAns">寻找答案</div>
+				<p class="retryBtn">再答一次</p>
+			</div>
+		</div>
+		<div class="alert succ">
+			<div class="cover"></div>
+			<div class="content3">
+				<p class="tips1">答题成绩</p>
+				<p class="tips2"><i>100</i>分</p>
+				<p class="tips3">恭喜你获得报名资格！</p>
+				<div class="toBm">进入报名</div>
+			</div>
+		</div>
+
+		<!-- Dom Content End -->
+	</body>
+	<script src="libs/jquery/jquery.min.js"></script>
+	<script>
+		$(function() {
+			Init();
+
+			function Init() {
+				checkType();
+				var indexClock = 9;
+				var timerDom = $('.timer');
+				var timer = setInterval(function() {
+					if(indexClock <= 0) {
+						clearInterval(timer)
+						$('.clock').hide();
+						return
+					}
+					timerDom.html(indexClock--)
+				}, 1000)
+				events();
+			}
+
+			function checkType() {
+				$.ajax({
+					type: "get",
+					dataType: 'jsonp',
+					url: "http://cbg.mobilefoundation.org.cn/api/task/haspassedexam",
+					data: {
+//						uid: 8
+					},
+					async: true,
+					success: function(data) {
+						console.log(data)
+						if(data.data.is_passed == 1) {
+//							$('.toBm').trigger('click')
+						}
+
+					}
+				});
+			}
+
+			function events() {
+				$('.toBm').click(function() {
+					$.ajax({
+						type: "get",
+						dataType: 'jsonp',
+						url: "http://cbg.mobilefoundation.org.cn/api/team/getmyteam",
+						data: {
+//							uid: 1
+						},
+						async: true,
+						success: function(data) {
+							if(data.data.team_info) {
+								location.href = 'team.html'
+							} else {
+								location.href = 'myteam.html'
+							}
+						}
+					});
+				})
+				$('.searchAns').click(function() {
+					location.href = 'introduce.html'
+				})
+				$('.retryBtn').click(function() {
+					$('.retry').hide()
+					$('.cur').removeClass('cur')
+				})
+
+				$('.wrap .answer').on('click', function() {
+					$(this).addClass('cur').siblings().removeClass('cur')
+				})
+
+				$('.toCreate').click(function() {
+					var score = $('.sta.cur').length;
+					if(score == 6) {
+						$('.succ').show()
+						$.ajax({
+							type: "get",
+							dataType: 'jsonp',
+							url: "http://cbg.mobilefoundation.org.cn/api/task/passexam",
+							data: {
+//								uid: 8
+							},
+							async: true,
+							success: function(data) {
+								console.log(data)
+							}
+						});
+					} else {
+						$('.retry').show().find('.tips2 i').html(parseInt(100 * score / 6))
+					}
+					console.log(score)
+				})
+			}
+		})
+	</script>
+
+</html>

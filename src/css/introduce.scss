@@ -1,0 +1,62 @@
+@charset"UTF-8";
+@import "common/common";
+
+/*好友详情页*/
+
+.wrap {
+    .top {
+        width: 15rem;
+        height: 7.46rem;
+        color: #fff;
+        background: url(../img/static/introduce.png) no-repeat;
+        background-size: contain;
+        overflow: hidden;
+    }
+    .introduce {
+        position: relative;
+        width: 11.7rem;
+        height: 16rem;
+        margin: -3.56rem auto 0;
+        padding: 1.2rem 1rem;
+        border-radius: 0.4rem;
+        box-shadow: 0 0 0.5rem #ddd;
+        background: #fff;
+        overflow: hidden;
+        color: #707070;
+        font-size: 0.56rem;
+        line-height: 1rem;
+        .require {
+            margin-top: 0.9rem;
+            i {
+                color: #FFCD60;
+                font-size: 0.88rem;
+                font-weight: bold;
+            }
+            .younth {
+                font-size: 0.56rem;
+                font-weight: initial;
+            }
+        }
+        .func {
+            margin-top: 0.9rem;
+            i {
+                color: #FFCD60;
+                font-size: 0.8rem;
+                font-weight: bold;
+            }
+        }
+        .toShare {
+            width: 6.4rem;
+            height: 1.9rem;
+            margin: 1.12rem auto 0;
+            border-radius: 0.9rem;
+            line-height: 1.9rem;
+            text-align: center;
+            font-size: 0.64rem;
+            border: none;
+            color: #fff;
+            background: url(../img/static/share.png) no-repeat;
+            background-size: contain;
+        }
+    }
+}

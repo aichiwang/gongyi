@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+		<title>个人中心</title>
+		<link rel="stylesheet" href="css/center.css?v=1.0">
+		<script>
+			function setRem() {
+				document.documentElement.style.fontSize = document.documentElement.clientWidth / 15 + 'px';
+			}
+			window.onresize = setRem;
+			setRem();
+		</script>
+	</head>
+
+	<body>
+		<div class="wrap">
+
+			<div class="top">
+				<div class="portrait">
+					<img src="" />
+				</div>
+				<p class="nick">WUDI杨毛毛</p>
+				<p class="userNum">编号: 8059525</p>
+				<div class="userInfo">
+					<span id="curScore">当前积分: 2800</span>
+					<span id="curLevel">当前关卡: 第2关</span>
+				</div>
+			</div>
+
+			<div class="level">
+				<div class="levelWrap">
+					<div class="levelItem">
+						<img src="img/static/cookie.png" /><br />
+						<i class="trangle"></i>
+						<p>已点亮</p>
+					</div>
+					<div class="levelItem">
+						<img src="img/static/cookieGrey.png" /><br />
+						<i class="trangle"></i>
+						<p>还差99积分</p>
+					</div>
+					<div class="levelItem">
+						<img src="img/static/cookieGrey.png" /><br />
+						<i class="trangle"></i>
+						<p>还差999积分</p>
+					</div>
+					<div class="levelItem">
+						<img src="img/static/cookieGrey.png" /><br />
+						<i class="trangle"></i>
+						<p>还差999积分</p>
+					</div>
+				</div>
+				<div class="process">
+					<div class="processDet"></div>
+				</div>
+			</div>
+
+			<div class="bottom">
+				<ul>
+					<li>
+						<a href="rank.html">
+							<img src="img/static/coinRank.png" />
+							<p>排行榜</p>
+						</a>
+					</li>
+					<li>
+						<a href="certificate.html">
+							<img src="img/static/coinCard.png" />
+							<p>我的工作证</p>
+						</a>
+					</li>
+					<li>
+						<a class="honor" >
+							<img src="img/static/coinLabel.png" />
+							<p>我的荣誉</p>
+						</a>
+					</li>
+					<li>
+						<a href="team.html">
+							<img src="img/static/coinHuman.png" />
+							<p>我的队伍</p>
+						</a>
+					</li>
+					<li>
+						<a href="monthdonat.html">
+							<img src="img/static/coinHeart.png" />
+							<p>我的月捐</p>
+						</a>
+					</li>
+					<li>
+						<a href="edit.html">
+							<img src="img/static/coinAbout.png" />
+							<p>我的资料</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- Dom Content End -->
+	</body>
+	<script src="libs/jquery/jquery.min.js"></script>
+	<script>
+		$(function() {
+			Init();
+
+			function Init() {
+				getUserInfo();
+				events();
+			}
+
+			function getUserInfo() {
+				$.ajax({
+					type: "get",
+					dataType: 'jsonp',
+					url: "http://cbg.mobilefoundation.org.cn/api/user/getuserinfo",
+					data: {
+//						uid: 8
+					},
+					async: true,
+					success: function(data) {
+						console.log(data)
+						$('.portrait img').attr('src', data.data.userinfo.headimgurl)
+						$('.userNum').html('编号: ' + data.data.userinfo.id)
+						$('.nick').html(data.data.userinfo.name)
+						$('#curScore').html('当前积分: ' + data.data.score)
+						$('#curLevel').html('当前关卡: 第: ' + data.data.star_lv.lv + '关')
+
+						for(var i = 0; i < 4; i++) {
+							if(data.data.star_lv.lv + 1 > i) {
+								$('.levelItem').eq(i).find('img').attr('src', 'img/static/cookie.png').siblings('p').html('已点亮')
+							} else {
+								$('.levelItem').eq(i).find('img').attr('src', 'img/static/cookieGrey.png').siblings('p').html('还差' + (data.data.star_lv.lv_score[i] - data.data.score) + '分')
+							}
+						}
+						var duo = data.data.score - data.data.star_lv.lv_score[data.data.star_lv.lv];
+						var persent = duo / (data.data.star_lv.lv_score[data.data.star_lv.lv + 1] - data.data.star_lv.lv_score[data.data.star_lv.lv]);
+
+						$('.processDet').css('width', 10 + (27 * (data.data.star_lv.lv + persent)) + '%')
+
+						if(data.data.task.length == 4) {
+							window.hasHecheng = true;
+						}
+					}
+				});
+			}
+
+			function events() {
+
+				$('.honor').click(function() {
+					if( window.hasHecheng ){
+						location.href = 'honorcard.html'
+					}else{
+						location.href = 'honor.html'
+					}
+				})
+			}
+		})
+	</script>
+
+</html>

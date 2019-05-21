@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+		<title>荣誉证书</title>
+		<link rel="stylesheet" href="css/honorcard.css?v=1.0">
+		<script>
+			function setRem() {
+				document.documentElement.style.fontSize = document.documentElement.clientWidth / 15 + 'px';
+			}
+			window.onresize = setRem;
+			setRem();
+		</script>
+	</head>
+
+	<body>
+		<div class="wrap">
+
+			<div class="top">
+				<div class="portrait">
+					<img src="" />
+				</div>
+				<p class="nick">WUDI杨毛毛</p>
+				<p class="userNum">编号: 8059525</p>
+				<div class="userInfo">
+					<span>当前积分: 2800</span>
+					<span>当前关卡: 第2关</span>
+				</div>
+			</div>
+
+			<div class="card">
+				<div class="cardWrap">
+					<div class="cardNum">证书编号: 000001</div>
+					<p class="honorName">小小公益传播官</p>
+					<p class="cardName">荣誉证书</p>
+					<div class="stars">
+						<p>证书星级</p>
+						<img src="img/static/star.png" />
+						<img src="img/static/star.png" />
+						<img src="img/static/star.png" />
+					</div>
+					<p class="uname">杨晓毛</p>
+					<p class="state">在此次小小公益宣传活动中,表现突出特发此证!</p>
+					<div class="bottom">
+						<div class="blank"></div>
+						<div class="guanfang">
+							<p>中国扶贫基金会</p>
+							<p>2019年8月1日</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="toSave">保存打印</div>
+			<div class="toShare">分享给朋友</div>
+			<div class="toCenter">个人中心</div>
+		</div>
+		
+		
+		<div class="shareCover">
+			<img src="img/static/shareCover.png"/>
+		</div>
+		
+		<!-- Dom Content End -->
+	</body>
+	<script src="libs/jquery/jquery.min.js"></script>
+	<script>
+		$(function() {
+			Init();
+
+			function Init() {
+				events();
+			}
+
+			function events() {
+
+				$('.toCenter').click(function() {
+					location.href = 'center.html';
+				})
+
+				$('.toShare').click(function() {
+					$('.shareCover').show();
+				})
+				$('.shareCover').click(function() {
+					$(this).hide();
+				})
+
+			}
+
+
+		})
+	</script>
+
+</html>

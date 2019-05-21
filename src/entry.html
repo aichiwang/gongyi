@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+		<title>确认报名</title>
+		<link rel="stylesheet" href="css/entry.css">
+		<script>
+			function setRem() {
+				document.documentElement.style.fontSize = document.documentElement.clientWidth / 15 + 'px';
+			}
+			window.onresize = setRem;
+			setRem();
+		</script>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="level">
+				<div class="imgWrap">
+					<img src="img/static/zhaopian.jpg" />
+				</div>
+				<div class="infoWrap">
+					<div class="left">
+						<p>编号: <span id="number">0918</span></p>
+						<p class="nick"> 杨晓毛</p>
+						<p>所属团队: <span id="teamname">卡姆昂小队</span></p>
+					</div>
+					<div class="right"><img src=""/></div>
+				</div>
+			</div>
+			<p class="state">此工作截止2019年7月31日前使用有效</p>
+
+			<div class="botBtn">
+				<div class="save">保存图片</div>
+				<div class="share">确认报名</div>
+			</div>
+		</div>
+
+		<!-- Dom Content End -->
+	</body>
+	<script src="libs/jquery/jquery.min.js"></script>
+	<script>
+		$(function() {
+			Init();
+
+			function Init() {
+				getUserInfo();
+				getCardInfo();
+				events();
+			}
+
+			function getCardInfo() {
+				$.ajax({
+					type: "get",
+					dataType: 'jsonp',
+					url: "http://cbg.mobilefoundation.org.cn/api/card/",
+					data: {
+//						uid: 8
+					},
+					async: true,
+					success:function(data){
+						console.log(data)
+						$('.imgWrap img').attr('src',data.data.img_url)
+						$('.right img').attr('src', data.data.qrcode_url)
+//						$('#number').html(data.data.userinfo.id)
+						$('#teamname').html(data.data.team_name)
+						
+//						$('.nick').html(data.data.userinfo.name)
+					}
+				});
+			}
+			
+			function getUserInfo() {
+				$.ajax({
+					type: "get",
+					dataType: 'jsonp',
+					url: "http://cbg.mobilefoundation.org.cn/api/user/getuserinfo",
+					data: {
+//						uid: 8
+					},
+					async: true,
+					success:function(data){
+						console.log(data)
+						$('#number').html(data.data.userinfo.id)
+						$('.nick').html(data.data.userinfo.name)
+					}
+				});
+			}
+
+			function events() {
+
+				$('.share').click(function() {
+					location.href = 'center.html';
+				})
+//				$('.toJoin').click(function() {
+//					location.href = 'join.html';
+//				})
+			}
+		})
+	</script>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+		<title>中扶小小公益官</title>
+		<link rel="stylesheet" href="css/bm.css?v=1.0">
+		<script>
+			function setRem() {
+				document.documentElement.style.fontSize = document.documentElement.clientWidth / 15 + 'px';
+			}
+			window.onresize = setRem;
+			setRem();
+		</script>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<img class="indexTil" src="img/static/indexTil.png"/>
+			<img class="indexStory" src="img/static/indexStory.png"/>
+			<img class="indexTime" src="img/static/indexTime.png"/>
+			<img class="indexRen" src="img/static/indexRen.png"/>
+			<a href="introduce.html">
+				<img class="indexBm" src="img/static/indexBm.png"/>
+			</a>
+		</div>
+
+		<!-- Dom Content End -->
+	</body>
+	<script src="libs/jquery/jquery.min.js"></script>
+	<script>
+		$(function() {
+			Init();
+
+			function Init() {
+				events();
+				$.ajax({
+					type:"get",
+					dataType:'jsonp',
+					url:"http://cbg.mobilefoundation.org.cn/api/index",
+					async:true
+				});
+			}
+
+			function events() {
+			}
+		})
+	</script>
+
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+		<title>我的荣誉</title>
+		<link rel="stylesheet" href="css/honor.css?v=1.0">
+		<script>
+			function setRem() {
+				document.documentElement.style.fontSize = document.documentElement.clientWidth / 15 + 'px';
+			}
+			window.onresize = setRem;
+			setRem();
+		</script>
+	</head>
+
+	<body>
+		<div class="wrap">
+
+			<div class="top">
+				<div class="portrait">
+					<img src="" />
+				</div>
+				<p class="nick">WUDI杨毛毛</p>
+				<p class="userNum">编号: 8059525</p>
+				<div class="userInfo">
+					<span id="curScore">当前积分: 2800</span>
+					<span id="curLevel">当前关卡: 第2关</span>
+				</div>
+			</div>
+
+			<div class="compose">
+				<div class="composeWrap">
+					<div class="composeBtn">马上合成</div>
+					<div class="tolight level1">
+						<img src="img/static/cookieGrey.png" />
+						<p>去点亮</p>
+					</div>
+					<div class="tolight level2">
+						<img src="img/static/cookieGrey.png" />
+						<p>去点亮</p>
+					</div>
+					<div class="tolight level3">
+						<img src="img/static/cookieGrey.png" />
+						<p>去点亮</p>
+					</div>
+				</div>
+				<div class="explain">所有碎片点亮后方可合成荣誉证书</div>
+			</div>
+
+			<div class="toCenter">个人中心</div>
+		</div>
+
+		<!-- Dom Content End -->
+	</body>
+	<script src="libs/jquery/jquery.min.js"></script>
+	<script>
+		$(function() {
+			Init();
+
+			function Init() {
+				getUserInfo();
+				events();
+			}
+
+			function getUserInfo() {
+				$.ajax({
+					type: "get",
+					dataType: 'jsonp',
+					url: "http://cbg.mobilefoundation.org.cn/api/user/getuserinfo",
+					data: {
+//						uid: 8
+					},
+					async: true,
+					success: function(data) {
+						console.log(data)
+						
+						$('.portrait img').attr('src', data.data.userinfo.headimgurl)
+						$('.userNum').html('编号: ' + data.data.userinfo.id)
+						$('.nick').html(data.data.userinfo.name)
+						$('#curScore').html('当前积分: ' + data.data.score)
+						$('#curLevel').html('当前关卡: 第: ' + data.data.star_lv.lv + '关')
+
+						for(var i = 0; i < 3; i++) {
+							if(data.data.task[i]) {
+								$('.tolight').eq(i).find('p').html('已点亮').siblings('img').attr('src', 'img/static/cookie.png')
+							}
+						}
+						if(data.data.task.length == 3) {
+							$('.composeBtn').css('background', 'url(./img/static/compose.png) no-repeat center')
+							$('.composeBtn').click(function() {
+								toSyn();
+							})
+						}
+					}
+				});
+			}
+
+			function toSyn() {
+				$.ajax({
+					type: "get",
+					dataType: 'jsonp',
+					url: "http://cbg.mobilefoundation.org.cn/api/task/syn/",
+					data: {
+//						uid: 8
+					},
+					async: true,
+					success: function(data) {
+						if(data.code == 0) {
+							location.href = 'honorcard.html'
+						}else {
+							globalMes(data.msg)
+						}
+
+					}
+				});
+			}
+
+			function events() {
+				$('.toCenter').click(function() {
+					location.href = 'center.html';
+				})
+			}
+
+			function globalMes(txt) {
+				$('body').append('<div class="globalmes">' + txt + '</div>')
+				setTimeout(function() {
+					$('.globalmes').remove();
+				}, 2000)
+			}
+		})
+	</script>
+
+</html>

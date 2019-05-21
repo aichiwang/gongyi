@@ -96,7 +96,7 @@
 					dataType: 'jsonp',
 					url: "http://cbg.mobilefoundation.org.cn/api/team/getmyteam",
 					data: {
-//						uid: 8
+//						uid: 18
 					},
 					async: true,
 					success: function(data) {
@@ -108,7 +108,7 @@
 							
 							$('.process .processDet').css('width',parseInt( data.data.team_info.score/data.data.team_info.target_num*100)+'%')
 							$('.process .tip').css('left',parseInt( data.data.team_info.score/data.data.team_info.target_num*100)+'%')
-							$('.process .tip span').html('已完成'+ data.data.team_info.score/data.data.team_info.target_num*100 +'%')
+							$('.process .tip span').html('已完成'+ parseInt(data.data.team_info.score/data.data.team_info.target_num*100) +'%')
 							$('.top .score').html('挑战积分: '+ data.data.team_info.target_num)
 						}
 						

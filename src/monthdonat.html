@@ -67,12 +67,12 @@
 			<div class="alert">
 				<div class="cover"></div>
 				<div class="content">
-					<input class="nick" type="text" name="" id="" value="" placeholder="请输入姓名" /><br />
-					<input class="phone" type="text" name="" id="" value="" placeholder="请输入电话号码" /><br />
+					<input class="nick" type="text" name="" id="nick" value="" placeholder="请输入姓名" /><br />
+					<input class="phone" type="text" name="" id="phone" value="" placeholder="请输入电话号码" /><br />
 
 					<div class="dateCover">
 						选择办理日期<i></i>
-						<input class="date" type="date" name="" id="" value="" placeholder="选择办理日期" style="opacity: 0;"/>
+						<input class="date" type="date" name="" id="" value="" placeholder="选择办理日期" style="opacity: 0;" />
 					</div>
 					<div class="toInvite">马上邀请</div>
 					<i class="close"></i>
@@ -98,7 +98,7 @@
 					dataType: 'jsonp',
 					url: "http://cbg.mobilefoundation.org.cn/api/donate/getlist",
 					data: {
-						//						uid: 8,
+//						uid: 48,
 						status: mType
 					},
 					async: true,
@@ -152,12 +152,46 @@
 					location.href = 'center.html';
 				})
 
-				$('.dateCover').click(function() {
-					$('.date').trigger('click')
+				$('.date').click(function() {
+					$(this).css('opacity', '1')
 				})
-				
-				$('.date').click(function(){
-					$(this).css('opacity','1')
+
+				$('.toInvite').click(function() {
+					var nick = $('#nick').val();
+					var phone = $('#phone').val();
+					var dates = $('.date').val();
+					if(!nick) {
+						globalMes('请输入姓名')
+					} else if(!phone) {
+						globalMes('请填写手机号')
+					} else if(!dates) {
+						globalMes('请选择日期')
+					} else {
+						$.ajax({
+							type: "get",
+							dataType: 'jsonp',
+							url: "http://cbg.mobilefoundation.org.cn/api/user/edit",
+							data: {
+								name: uname,
+								sex: sex,
+								age: uage,
+								receiver_name: receiver,
+								receiver_phone: phone,
+								res_province: province,
+								res_city: city,
+								address: detailArea
+							},
+							async: true,
+							success: function(data) {
+								console.log(data)
+								globalMes(data.msg)
+								setTimeout(function() {
+									//						location.href = 'center.html'
+								}, 3000)
+							}
+						});
+					}
+
 				})
 
 			}

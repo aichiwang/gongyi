@@ -44,7 +44,9 @@
 					</li>
 					<li>
 						<span>战队头像</span>
-						<input type="file" name="" id="teamPor" value="" placeholder="请上传战队头像" onchange="inpChange(this)" />
+						<form action="" id="form">
+							<input type="file" name="file" id="teamPor" value="" placeholder="请上传战队头像"  />
+						</form>
 					</li>
 				</ul>
 
@@ -84,13 +86,12 @@
 				} else if(!teamTarget) {
 					globalMes('请输入队伍目标')
 				} else {
-
+					
+					var form = new FormData($('#form')[0])
 					$.ajax({
 						type: "post",
 						url: "http://cbg.mobilefoundation.org.cn/api/upload",
-						data:{
-							file:window.filedata
-						},
+						data:form,
 						async: true,
 						cache:false,
 						processData: false,
@@ -102,9 +103,9 @@
 									dataType: 'jsonp',
 									url: "http://cbg.mobilefoundation.org.cn/api/team/create",
 									data: {
-										//uid: 8,
+//										uid: 8,
 										name: teamName,
-										headimg: res.data.site_url,
+										headimgurl: res.data.site_url,
 										announcement: teamState,
 										province: province,
 										city: city,
@@ -113,7 +114,6 @@
 									},
 									async: true,
 									success: function(data) {
-										//									console.log(data)
 										globalMes(data.msg)
 										setTimeout(function() {
 											location.href = 'bmbiao.html'
@@ -124,9 +124,6 @@
 						}
 					});
 
-					//					$.post('http://cbg.mobilefoundation.org.cn/api/upload',window.formData,function(res){
-
-					//					});
 				}
 			})
 
@@ -138,11 +135,6 @@
 			}
 		}
 
-		function inpChange(source) {
-//			var formData = new FormData();
-//			formData.append("file", source.files[0]);
-			window.filedata = source.files[0];
-		}
 	</script>
 
 </html>

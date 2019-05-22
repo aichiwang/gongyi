@@ -24,11 +24,11 @@
 				<div class="portrait">
 					<img src="" />
 				</div>
-				<p class="nick">WUDI杨毛毛</p>
-				<p class="userNum">编号: 8059525</p>
+				<p class="nick"></p>
+				<p class="userNum">编号: </p>
 				<div class="userInfo">
-					<span id="curScore">当前积分: 2800</span>
-					<span id="curLevel">当前关卡: 第2关</span>
+					<span id="curScore">当前积分: </span>
+					<span id="curLevel">当前关卡: </span>
 				</div>
 			</div>
 
@@ -111,6 +111,7 @@
 
 			function Init() {
 				getUserInfo();
+				getTeamInfo();
 				events();
 			}
 
@@ -129,7 +130,7 @@
 						$('.userNum').html('编号: ' + data.data.userinfo.id)
 						$('.nick').html(data.data.userinfo.name)
 						$('#curScore').html('当前积分: ' + data.data.score)
-						$('#curLevel').html('当前关卡: 第 ' + data.data.star_lv.lv + '关')
+						$('#curLevel').html('当前关卡: 第' + data.data.star_lv.lv + '关')
 
 						for(var i = 0; i < 4; i++) {
 							if(data.data.star_lv.lv + 1 > i) {
@@ -145,6 +146,24 @@
 
 						if(data.data.task.length == 4) {
 							window.hasHecheng = true;
+						}
+					}
+				});
+			}
+			
+			function getTeamInfo() {
+				$.ajax({
+					type: "get",
+					dataType: 'jsonp',
+					url: "http://cbg.mobilefoundation.org.cn/api/team/getmyteam",
+					data: {
+//						uid: 2
+					},
+					async: true,
+					success: function(data) {
+						console.log(data)
+						if(data.code != 0) {
+							location.href = 'create.html'
 						}
 					}
 				});

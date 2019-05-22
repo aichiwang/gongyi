@@ -47,8 +47,11 @@
     }
     .sublist,
     .hasPass {
-        height: 16rem;
+        height: 14rem;
         overflow: overlay;
+        .teamer{
+            padding-top: 0.5rem;
+        }
         li {
             position: relative;
             width: 12.5rem;
@@ -87,6 +90,14 @@
                 border-top-right-radius: 0.4rem;
             }
         }
+        li.emptyWrap{
+            box-shadow:none;
+            text-align: center;
+            .emptyImg{
+                margin-top: 3rem;
+                width: 10rem;
+            }
+        }
         li.active {
             left: -3rem;
             .delete {
@@ -101,7 +112,7 @@
         display: none;
     }
     .bottom {
-        margin-top: 3rem;
+        margin-top: 2rem;
         text-align: center;
         .toCenter {
             display: inline-block;

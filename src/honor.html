@@ -82,7 +82,7 @@
 						$('.userNum').html('编号: ' + data.data.userinfo.id)
 						$('.nick').html(data.data.userinfo.name)
 						$('#curScore').html('当前积分: ' + data.data.score)
-						$('#curLevel').html('当前关卡: 第: ' + data.data.star_lv.lv + '关')
+						$('#curLevel').html('当前关卡: 第 ' + data.data.star_lv.lv + '关')
 
 						for(var i = 0; i < 3; i++) {
 							if(data.data.task[i]) {

@@ -125,6 +125,14 @@
 						} else if(mType == 2) {
 							$('.sublist .teamer').html(str)
 						}
+						
+						if(data.data.list.length==0){
+							if(mType == 1) {
+								$('.hasPass .teamer').html('<li class="emptyWrap"><img class="emptyImg" src="./img/static/empty.png"/></li>')
+							} else if(mType == 2) {
+								$('.sublist .teamer').html('<li class="emptyWrap"><img class="emptyImg" src="./img/static/empty.png"/></li>')
+							}
+						}
 					}
 				});
 			}

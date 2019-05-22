@@ -75,7 +75,7 @@
 			</div>-->
 		</div>
 		<div class="shareCover">
-			<img src="img/static/shareCover.png"/>
+			<img src="img/static/shareCover.png" />
 		</div>
 
 		<!-- Dom Content End -->
@@ -96,31 +96,35 @@
 					dataType: 'jsonp',
 					url: "http://cbg.mobilefoundation.org.cn/api/team/getmyteam",
 					data: {
-//						uid: 18
+//						uid: 2
 					},
 					async: true,
 					success: function(data) {
 						console.log(data)
-						if(data.data.team_info) {
-							$('.nick').html(data.data.team_info.name)
-							$('.state').html(data.data.team_info.announcement)
-							$('.portrait img').attr('src',data.data.team_info.headimgurl)
-							
-							$('.process .processDet').css('width',parseInt( data.data.team_info.score/data.data.team_info.target_num*100)+'%')
-							$('.process .tip').css('left',parseInt( data.data.team_info.score/data.data.team_info.target_num*100)+'%')
-							$('.process .tip span').html('已完成'+ parseInt(data.data.team_info.score/data.data.team_info.target_num*100) +'%')
-							$('.top .score').html('挑战积分: '+ data.data.team_info.target_num)
+						if(data.code != 0) {
+							location.href = 'create.html'
+						} else {
+							if(data.data.team_info) {
+								$('.nick').html(data.data.team_info.name)
+								$('.state').html(data.data.team_info.announcement)
+								$('.portrait img').attr('src', data.data.team_info.headimgurl)
+
+								$('.process .processDet').css('width', parseInt(data.data.team_info.score / data.data.team_info.target_num * 100) + '%')
+								$('.process .tip').css('left', parseInt(data.data.team_info.score / data.data.team_info.target_num * 100) + '%')
+								$('.process .tip span').html('已完成' + parseInt(data.data.team_info.score / data.data.team_info.target_num * 100) + '%')
+								$('.top .score').html('挑战积分: ' + data.data.team_info.target_num)
+							}
+
+							var str = '';
+							for(var i = 0; i < data.data.user_list.length; i++) {
+								str += '<li>' +
+									'<img src="' + data.data.user_list[i].u_headimgurl + '" />' +
+									'<span class="nick">' + data.data.user_list[i].u_name + '</span>' +
+									'<span class="score">' + data.data.user_list[i].score + '积分</span>' +
+									'</li>'
+							}
+							$('.teamer').html(str)
 						}
-						
-						var str = '';
-						for(var i =0;i<data.data.user_list.length;i++){
-							str += '<li>'+
-								'<img src="'+ data.data.user_list[i].u_headimgurl +'" />'+
-								'<span class="nick">'+ data.data.user_list[i].u_name +'</span>'+
-								'<span class="score">'+ data.data.user_list[i].score +'积分</span>'+
-							'</li>'	
-						}
-						$('.teamer').html(str)
 					}
 				});
 			}
@@ -130,18 +134,18 @@
 				$('.toCenter').click(function() {
 					location.href = 'center.html';
 				})
-				
+
 				$('.editBtn').click(function() {
 					location.href = 'fixteam.html';
 				})
-				
+
 				$('.toInvite').click(function() {
 					$('.shareCover').show();
 				})
 				$('.shareCover').click(function() {
 					$(this).hide();
 				})
-				
+
 			}
 		})
 	</script>

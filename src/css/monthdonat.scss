@@ -47,6 +47,8 @@
     }
     .sublist,
     .hasPass {
+        height: 16rem;
+        overflow: overlay;
         li {
             position: relative;
             width: 12.5rem;

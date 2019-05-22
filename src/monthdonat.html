@@ -26,7 +26,7 @@
 			</div>
 			<div class="sublist">
 				<ul class="teamer">
-					<li>
+					<!--<li>
 						<span class="nick">杨小啊</span>
 						<span class="phone">电话: <i>13221231239</i></span>
 						<span class="delete">删除</span>
@@ -37,12 +37,12 @@
 						<span class="phone">电话: <i>13221231239</i></span>
 						<span class="delete">删除</span>
 						<i class="comfirmDel">确认删除</i>
-					</li>
+					</li>-->
 				</ul>
 			</div>
 			<div class="hasPass">
 				<ul class="teamer">
-					<li>
+					<!--<li>
 						<span class="nick">杨小啊</span>
 						<span class="phone">电话: <i>13221231239</i></span>
 						<span class="donation">+50</span>
@@ -56,7 +56,7 @@
 						<span class="nick">杨小啊</span>
 						<span class="phone">电话: <i>13221231239</i></span>
 						<span class="donation">+50</span>
-					</li>
+					</li>-->
 				</ul>
 			</div>
 
@@ -74,7 +74,7 @@
 						选择办理日期<i></i>
 						<input class="date" type="date" name="" id="" value="" placeholder="选择办理日期" style="opacity: 0;" />
 					</div>
-					<div class="toInvite">马上邀请</div>
+					<div class="toInvite">马上提交</div>
 					<i class="close"></i>
 				</div>
 			</div>
@@ -88,7 +88,7 @@
 			Init();
 
 			function Init() {
-				getDonateInfo(3);
+				getDonateInfo(2); //默认获取待审核数据
 				events();
 			}
 
@@ -98,26 +98,33 @@
 					dataType: 'jsonp',
 					url: "http://cbg.mobilefoundation.org.cn/api/donate/getlist",
 					data: {
-//						uid: 48,
+//						uid: 42,
 						status: mType
 					},
 					async: true,
 					success: function(data) {
-						console.log(data)
 						var str = '';
 						for(var i = 0; i < data.data.list.length; i++) {
-
-							if(mType == 2) {
+							if(mType == 1) {
 								str += '<li>' +
-									//									'<span class="nick">'+data.data.list[i] +'</span>' +
-									'<span class="phone">电话: <i>13221231239</i></span>' +
+									'<span class="nick">' + data.data.list[i].name + '</span>' +
+									'<span class="phone">电话: <i>' + data.data.list[i].phone + '</i></span>' +
+									'<span class="donation"></span>' +
+									'</li>'
+							} else if(mType == 2) {
+								str += '<li>' +
+									'<span class="nick">' + data.data.list[i].name + '</span>' +
+									'<span class="phone">电话: <i>' + data.data.list[i].phone + '</i></span>' +
 									'<span class="delete">删除</span>' +
-									'<i class="comfirmDel">确认删除</i>' +
+									'<i class="comfirmDel" data-id="' + data.data.list[i].id + '">确认删除</i>' +
 									'</li>'
 							}
 						}
-						$('#teamname').html(data.data.team_name)
-
+						if(mType == 1) {
+							$('.hasPass .teamer').html(str)
+						} else if(mType == 2) {
+							$('.sublist .teamer').html(str)
+						}
 					}
 				});
 			}
@@ -143,8 +150,10 @@
 					$(this).addClass('cur').siblings().removeClass('cur')
 					if($(this).index() == 0) {
 						$('.sublist').show().siblings('.hasPass').hide();
+						getDonateInfo(2)
 					} else {
 						$('.hasPass').show().siblings('.sublist').hide();
+						getDonateInfo(1)
 					}
 				})
 
@@ -156,7 +165,7 @@
 					$(this).css('opacity', '1')
 				})
 
-				$('.toInvite').click(function() {
+				$('.toInvite').click(function() { //新增提交
 					var nick = $('#nick').val();
 					var phone = $('#phone').val();
 					var dates = $('.date').val();
@@ -170,23 +179,24 @@
 						$.ajax({
 							type: "get",
 							dataType: 'jsonp',
-							url: "http://cbg.mobilefoundation.org.cn/api/user/edit",
+							url: "http://cbg.mobilefoundation.org.cn/api/donate/add",
 							data: {
-								name: uname,
-								sex: sex,
-								age: uage,
-								receiver_name: receiver,
-								receiver_phone: phone,
-								res_province: province,
-								res_city: city,
-								address: detailArea
+//								uid: 42,
+								name: nick,
+								phone: phone,
+								donate_date: dates,
 							},
 							async: true,
 							success: function(data) {
-								console.log(data)
-								globalMes(data.msg)
+								if(data.code == 0) {
+									globalMes(data.msg.slice(2) + '提交！')
+								} else {
+									globalMes(data.msg)
+								}
 								setTimeout(function() {
-									//						location.href = 'center.html'
+									$('.alert .close').trigger('click')
+									getDonateInfo(2)
+									$('.tab span').eq(0).trigger('click')
 								}, 3000)
 							}
 						});
@@ -194,7 +204,34 @@
 
 				})
 
+				$('.wrap').on('click','.comfirmDel',function(){		//删除提交
+					var id = $(this).data('id');
+					$.ajax({
+						type: "get",
+						dataType: 'jsonp',
+						url: "http://cbg.mobilefoundation.org.cn/api/donate/delete",
+						data: {
+//							uid: 42,
+							id: id
+						},
+						async: true,
+						success: function(data) {
+							globalMes(data.msg)
+							getDonateInfo(2)
+						}
+					});
+
+				})
+
 			}
+
+			function globalMes(txt) {
+				$('body').append('<div class="globalmes">' + txt + '</div>')
+				setTimeout(function() {
+					$('.globalmes').remove();
+				}, 2000)
+			}
+
 		})
 	</script>
 

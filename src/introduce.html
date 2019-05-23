@@ -54,11 +54,19 @@
 			}
 
 			function clock() {
-				
-				$('.toShare').click(function() {
-					location.href = 'answer.html';
-				})
-				return;
+				var eleDom = $('.toShare')
+				var indexClock = 20;
+				var timer = setInterval(function(){
+					if(indexClock<=0){
+						eleDom.html( '马上报名' )
+						clearInterval(timer)
+						eleDom.click(function() {
+							location.href = 'answer.html';
+						})
+						return
+					}
+					eleDom.html( '(' + indexClock-- + 's)马上报名' )
+				},1000)
 			}
 		})
 	</script>

@@ -76,19 +76,41 @@
                     width: 1rem;
                     height: 1rem;
                 }
+                span{
+                    position: absolute;
+                    width: 6rem;
+                    background: #fff;
+                    padding: 0.5rem;
+                    box-shadow: 0 0 0.5rem #ddd;
+                    border-radius: 0.5rem;
+                    font-size: 0.3rem;
+                    display: none;
+                }
             }
             .level1 {
                 top: 1rem;
                 left: -4rem;
+                span{
+                    left: 1rem;
+                    top: 1rem;
+                }
             }
             .level2 {
                 top: -2.2rem;
                 left: 50%;
                 margin-left: -1.5rem;
+                span{
+                    left: -2rem;
+                    top: 1rem;
+                }
             }
             .level3 {
                 top: 1rem;
                 right: -4rem;
+                span{
+                    left: -4rem;
+                    top: 1rem;
+                }
             }
         }
         .explain {

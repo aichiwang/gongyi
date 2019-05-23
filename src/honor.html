@@ -38,14 +38,17 @@
 					<div class="tolight level1">
 						<img src="img/static/cookie1Grey.png" />
 						<p>去点亮</p>
+						<span >利用电子海报进行宣传，邀请20名爱心人士扫码关注"加油一起成长"，扫描一个二维码得一分</span>
 					</div>
 					<div class="tolight level2">
 						<img src="img/static/cookie2Grey.png" />
 						<p>去点亮</p>
+						<span>1.收到绘本后请选择你最喜欢的一篇故事进行涂色打卡2.参照模板音频联系讲故事3.向40位陌生人讲出你最喜欢的加油故事，邀请TA扫码了解更多的贫困儿童故事,扫描1个二维码得2分（7月10日开始）</span>
 					</div>
 					<div class="tolight level3">
 						<img src="img/static/cookie3Grey.png" />
 						<p>去点亮</p>
+						<span>向他人介绍“加油一起成长”公益计划，动员一名爱心人士加入月捐队伍，共同帮助乡村小朋友</span>
 					</div>
 				</div>
 				<div class="explain">所有碎片点亮后方可合成荣誉证书</div>
@@ -121,6 +124,16 @@
 			function events() {
 				$('.toCenter').click(function() {
 					location.href = 'center.html';
+				})
+				
+				$('.tolight img').click(function(e){
+					$(this).siblings('span').show();
+					$(this).parents('.tolight').siblings('.tolight').find('span').hide();
+					e.stopPropagation();
+				})
+				
+				$('body').click(function(){
+					$('.tolight span').hide()
 				})
 			}
 

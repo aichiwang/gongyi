@@ -28,7 +28,7 @@
             font-size: 0.72rem;
         }
         .userNum{
-            font-size: 0.52rem;
+            font-size: 0.56rem;
             text-align: center;
         }
         .userInfo{
@@ -56,6 +56,7 @@
                 margin: 0.6rem 0.2rem 0.6rem 0rem;
                 text-align: center;
                 display: inline-block;
+//              position: relative;
                 img{
                     width: 0.96rem;
                     height: 0.96rem;
@@ -66,6 +67,17 @@
                     display: inline-block;
                     border-width: 0.26rem 0.14rem;
                     border-color: transparent transparent #35C3FB transparent;
+                }
+                span{
+                    position: absolute;
+                    left: 0;
+                    bottom: 4rem;
+                    width: 12rem;
+                    background: #fff;
+                    padding: 0.5rem;
+                    box-shadow: 0 0 0.5rem #ddd;
+                    border-radius: 0.5rem;
+                    display: none;
                 }
             }
             .levelItem:last-child{

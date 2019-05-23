@@ -62,7 +62,7 @@
 					</li>
 					<li>
 						<span>详细地址</span>
-						<input type="text" name="" id="detailArea" value="" placeholder="如道路、门牌、小区、楼号" />
+						<input type="text" name="" id="detailArea" value="" placeholder="如道路、小区、楼号等" />
 					</li>
 				</ul>
 				<input class="comfirmBtn" type="submit" value="确认修改" />
@@ -154,7 +154,7 @@
 					async: true,
 					success: function(data) {
 						console.log(data)
-						$('#uname').val(data.data.userinfo.name);
+						$('#uname').val(data.data.userinfo.nick_name);
 						$('#uage').find('[value=' + data.data.userinfo.age + ']').attr('selected', 'selected');
 						$('#receiver').val(data.data.userinfo.receiver_name);
 						$('#phone').val(data.data.userinfo.receiver_phone);

@@ -36,6 +36,7 @@
 			Init();
 
 			function Init() {
+				getTeamInfo();
 				events();
 				$.ajax({
 					type:"get",
@@ -46,6 +47,23 @@
 			}
 
 			function events() {
+			}
+			
+			function getTeamInfo() {
+				$.ajax({
+					type: "get",
+					dataType: 'jsonp',
+					url: "http://cbg.mobilefoundation.org.cn/api/team/getmyteam",
+					data: {
+//						uid: 2
+					},
+					async: true,
+					success: function(data) {
+						if(data.code == 0) {
+							location.href = 'center.html'
+						}
+					}
+				});
 			}
 		})
 	</script>

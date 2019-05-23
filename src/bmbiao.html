@@ -33,17 +33,17 @@
 					<li>
 						<span>年龄</span>
 						<select name="" id="uage">
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
-							<option value="11">11</option>
-							<option value="12">12</option>
-							<option value="13">13</option>
-							<option value="14">14</option>
-							<option value="15">15</option>
+							<option value="5">5岁</option>
+							<option value="6">6岁</option>
+							<option value="7">7岁</option>
+							<option value="8">8岁</option>
+							<option value="9">9岁</option>
+							<option value="10">10岁</option>
+							<option value="11">11岁</option>
+							<option value="12">12岁</option>
+							<option value="13">13岁</option>
+							<option value="14">14岁</option>
+							<option value="15">15岁</option>
 						</select>
 					</li>
 					<li>
@@ -62,7 +62,7 @@
 					</li>
 					<li>
 						<span>详细地址</span>
-						<input type="text" name="" id="detailArea" value="" placeholder="如 道路、门牌、小区、楼号等" />
+						<input type="text" name="" id="detailArea" value="" placeholder="如道路、小区、楼号等" />
 					</li>
 				</ul>
 				<input class="comfirmBtn" type="submit" value="下一步" />
@@ -90,6 +90,8 @@
 				var city = $('#city_selector').val();
 				var district = $('#district_selector').val();
 				var detailArea = $('#detailArea').val();
+				
+				var regPhone = /^\d{11}$/;
 				if(!uname) {
 					globalMes('请输入姓名')
 				} else if(!sex) {
@@ -100,6 +102,8 @@
 					globalMes('请填写收件人')
 				} else if(!phone) {
 					globalMes('请填写手机号')
+				} else if(regPhone.test(phone)){
+					globalMes('请输入正确的手机号')
 				} else if(!province) {
 					globalMes('请选择省')
 				} else if(!city) {

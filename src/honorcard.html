@@ -95,10 +95,10 @@
 						console.log(data)
 						$('.portrait img').attr('src', data.data.userinfo.headimgurl)
 						$('.userNum').html('编号: ' + data.data.userinfo.id)
-						$('.nick').html(data.data.userinfo.name)
-						$('.uname').html(data.data.userinfo.name)
+						$('.nick').html(data.data.userinfo.nick_name)
+						$('.uname').html(data.data.userinfo.nick_name)
 						$('#curScore').html('当前积分: ' + data.data.score)
-						$('#curLevel').html('当前关卡: 第 ' + data.data.star_lv.lv + '关')
+						$('#curLevel').html('当前关卡: 第' + data.data.cur_task + '关')
 					}
 				});
 			}

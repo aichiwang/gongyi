@@ -44,7 +44,9 @@
 					</li>
 					<li>
 						<span>战队头像</span>
-						<input type="file" name="" id="teamPor" value="" placeholder="请上传战队头像" onchange="inpChange(this)" />
+						<form action="" id="form">
+							<input type="file" name="file" id="teamPor" value="" placeholder="请上传战队头像"  />
+						</form>
 					</li>
 				</ul>
 
@@ -64,6 +66,7 @@
 			addressInit('province_selector', 'city_selector', 'district_selector');
 
 			getMyTeamInfo();
+			getUserInfo();
 
 			$('.comfirmBtn').on('click', function() {
 				var teamName = $('#teamName').val();
@@ -87,32 +90,45 @@
 				} else if(!teamTarget) {
 					globalMes('请输入队伍目标')
 				} else {
-					$.post('http://cbg.mobilefoundation.org.cn/api/upload',window.formData,function(res){
-						if(res.data && res.data.site_url) {
-							$.ajax({
-								type: "get",
-								dataType: 'jsonp',
-								url: "http://cbg.mobilefoundation.org.cn/api/team/edit",
-								data: {
-									//uid: 8,
-									name: teamName,
-									headimg: res.data.site_url,
-									announcement: teamState,
-									province: province,
-									city: city,
-									target_num: teamTarget,
-									tid: window.tid
-								},
-								async: true,
-								success: function(data) {
-									globalMes(data.msg)
-									setTimeout(function() {
-										location.href = 'team.html'
-									}, 3000)
-								}
-							});
+
+					var form = new FormData($('#form')[0])
+					
+					$.ajax({
+						type: "post",
+						url: "http://cbg.mobilefoundation.org.cn/api/upload",
+						data: form,
+						async: true,
+						cache:false,
+						processData: false,
+						contentType:false,
+						success: function(res) {
+							if(res.data && res.data.site_url) {
+								$.ajax({
+									type: "get",
+									dataType: 'jsonp',
+									url: "http://cbg.mobilefoundation.org.cn/api/team/edit",
+									data: {
+										//uid: 8,
+										name: teamName,
+										headimg: res.data.site_url,
+										announcement: teamState,
+										province: province,
+										city: city,
+										target_num: teamTarget,
+										tid: window.tid
+									},
+									async: true,
+									success: function(data) {
+										globalMes(data.msg)
+										setTimeout(function() {
+											location.href = 'team.html'
+										}, 3000)
+									}
+								});
+							}
 						}
-					})
+					});
+
 				}
 			})
 
@@ -142,7 +158,7 @@
 					dataType: 'jsonp',
 					url: "http://cbg.mobilefoundation.org.cn/api/team/getmyteam",
 					data: {
-						//				uid: 8,
+//										uid: 8,
 					},
 					async: true,
 					success: function(data) {
@@ -159,6 +175,21 @@
 					}
 				});
 			}
+			
+			function getUserInfo() {
+				$.ajax({
+					type: "get",
+					dataType: 'jsonp',
+					url: "http://cbg.mobilefoundation.org.cn/api/user/getuserinfo",
+					data: {
+//						uid: 42
+					},
+					async: true,
+					success: function(data) {
+						$('.top img').attr('src', data.data.userinfo.headimgurl)
+					}
+				});
+			}
 
 			function globalMes(txt) {
 				$('body').append('<div class="globalmes">' + txt + '</div>')
@@ -168,11 +199,6 @@
 			}
 		}
 
-		function inpChange(source) {
-			var formData = new FormData();
-			formData.append("file", source.files[0]);
-			window.formData = formData;
-		}
 	</script>
 
 </html>

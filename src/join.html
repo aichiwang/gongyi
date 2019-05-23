@@ -112,6 +112,11 @@
 						async: true,
 						success: function(data) {
 							globalMes( data.msg)
+							if(data.code == 0 ){
+								setTimeout(function() {
+									location.href = 'bmbiao.html'
+								}, 3000)
+							}
 						}
 					});
 				})

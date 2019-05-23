@@ -64,6 +64,8 @@
 		function Init() {
 
 			addressInit('province_selector', 'city_selector', 'district_selector');
+			
+			getUserInfo();
 
 			$('.comfirmBtn').on('click', function() {
 				var teamName = $('#teamName').val();
@@ -115,9 +117,11 @@
 									async: true,
 									success: function(data) {
 										globalMes(data.msg)
-										setTimeout(function() {
-											location.href = 'bmbiao.html'
-										}, 3000)
+										if(data.code ==0 ){
+											setTimeout(function() {
+												location.href = 'bmbiao.html'
+											}, 3000)
+										}
 									}
 								});
 							}
@@ -126,6 +130,21 @@
 
 				}
 			})
+			
+			function getUserInfo() {
+				$.ajax({
+					type: "get",
+					dataType: 'jsonp',
+					url: "http://cbg.mobilefoundation.org.cn/api/user/getuserinfo",
+					data: {
+//						uid: 42
+					},
+					async: true,
+					success: function(data) {
+						$('.top img').attr('src', data.data.userinfo.headimgurl)
+					}
+				});
+			}
 
 			function globalMes(txt) {
 				$('body').append('<div class="globalmes">' + txt + '</div>')

@@ -105,8 +105,7 @@
 			Init();
 
 			function Init() {
-				checkType();
-				var indexClock = 9;
+				var indexClock = 5;
 				var timerDom = $('.timer');
 				var timer = setInterval(function() {
 					if(indexClock <= 0) {
@@ -118,44 +117,10 @@
 				}, 1000)
 				events();
 			}
-
-			function checkType() {
-				$.ajax({
-					type: "get",
-					dataType: 'jsonp',
-					url: "http://cbg.mobilefoundation.org.cn/api/task/haspassedexam",
-					data: {
-//						uid: 8
-					},
-					async: true,
-					success: function(data) {
-						console.log(data)
-						if(data.data.is_passed == 1) {
-							location.href = 'center.html'
-						}
-
-					}
-				});
-			}
-
+			
 			function events() {
 				$('.toBm').click(function() {
-					$.ajax({
-						type: "get",
-						dataType: 'jsonp',
-						url: "http://cbg.mobilefoundation.org.cn/api/team/getmyteam",
-						data: {
-//							uid: 1
-						},
-						async: true,
-						success: function(data) {
-							if(data.data.team_info) {
-								location.href = 'team.html'
-							} else {
-								location.href = 'myteam.html'
-							}
-						}
-					});
+					location.href = 'myteam.html'
 				})
 				$('.searchAns').click(function() {
 					location.href = 'introduce.html'
@@ -173,22 +138,9 @@
 					var score = $('.sta.cur').length;
 					if(score == 6) {
 						$('.succ').show()
-						$.ajax({
-							type: "get",
-							dataType: 'jsonp',
-							url: "http://cbg.mobilefoundation.org.cn/api/task/passexam",
-							data: {
-//								uid: 8
-							},
-							async: true,
-							success: function(data) {
-								console.log(data)
-							}
-						});
 					} else {
 						$('.retry').show().find('.tips2 i').html(parseInt(100 * score / 6))
 					}
-					console.log(score)
 				})
 			}
 		})

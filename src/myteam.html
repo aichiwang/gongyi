@@ -47,18 +47,6 @@
 				events();
 			}
 			
-			function getUserInfo(){
-				$.ajax({
-					type:"get",
-					dataType:'jsonp',
-					url:"http://cbg.mobilefoundation.org.cn/api/team/getmyteam",
-					data:{
-//						uid:8
-					},
-					async:true
-				});
-			}
-			
 			function getUserInfo() {
 				$.ajax({
 					type: "get",
@@ -69,7 +57,8 @@
 					},
 					async: true,
 					success: function(data) {
-						$('.nick').html( data.data.userinfo.name)
+						$('.portrait img').attr('src', data.data.userinfo.headimgurl)
+						$('.nick').html( data.data.userinfo.nick_name)
 					}
 				});
 			}

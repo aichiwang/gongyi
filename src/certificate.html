@@ -22,6 +22,7 @@
 			<div class="level">
 				<div class="imgWrap">
 					<img src="" />
+					<input type="file" name="card_pic_url" id="files" value="" />
 				</div>
 				<div class="infoWrap">
 					<div class="left">
@@ -67,7 +68,6 @@
 					async: true,
 					success:function(data){
 						console.log(data)
-						$('.imgWrap img').attr('src',data.data.img_url)
 						$('.right img').attr('src', data.data.qrcode_url)
 						$('#teamname').html(data.data.team_name)
 						
@@ -85,6 +85,7 @@
 					async: true,
 					success:function(data){
 						console.log(data)
+						$('.imgWrap img').attr('src',data.data.userinfo.card_url )
 						$('#number').html(data.data.userinfo.id)
 						$('.nick').html(data.data.userinfo.nick_name)
 					}
@@ -99,6 +100,35 @@
 				$('.shareCover').click(function() {
 					$(this).hide();
 				})
+				
+				$('#files').change(function(){
+					var form = new FormData($('#files')[0])
+					$.ajax({
+						type: "post",
+						url: "http://cbg.mobilefoundation.org.cn/api/user/editcardpic",
+						data: form,
+						async: true,
+						cache:false,
+						processData: false,
+						contentType:false,
+						success: function(res) {
+							console.log(res)
+							globalMes( res.msg)
+							if(res.code == 0){
+								getUserInfo();
+							}
+						}
+					})
+					
+					
+				})
+			}
+			
+			function globalMes(txt) {
+				$('body').append('<div class="globalmes">' + txt + '</div>')
+				setTimeout(function() {
+					$('.globalmes').remove();
+				}, 2000)
 			}
 		})
 	</script>

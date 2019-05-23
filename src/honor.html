@@ -36,15 +36,15 @@
 				<div class="composeWrap">
 					<div class="composeBtn">马上合成</div>
 					<div class="tolight level1">
-						<img src="img/static/cookieGrey.png" />
+						<img src="img/static/cookie1Grey.png" />
 						<p>去点亮</p>
 					</div>
 					<div class="tolight level2">
-						<img src="img/static/cookieGrey.png" />
+						<img src="img/static/cookie2Grey.png" />
 						<p>去点亮</p>
 					</div>
 					<div class="tolight level3">
-						<img src="img/static/cookieGrey.png" />
+						<img src="img/static/cookie3Grey.png" />
 						<p>去点亮</p>
 					</div>
 				</div>
@@ -76,8 +76,7 @@
 					},
 					async: true,
 					success: function(data) {
-						console.log(data)
-						
+//						console.log(data)
 						$('.portrait img').attr('src', data.data.userinfo.headimgurl)
 						$('.userNum').html('编号: ' + data.data.userinfo.id)
 						$('.nick').html(data.data.userinfo.nick_name)
@@ -86,7 +85,7 @@
 
 						for(var i = 0; i < 3; i++) {
 							if(data.data.task[i]) {
-								$('.tolight').eq(i).find('p').html('已点亮').siblings('img').attr('src', 'img/static/cookie.png')
+								$('.tolight').eq(i).find('p').html('已点亮').siblings('img').attr('src', 'img/static/cookie'+(i+1) +'.png')
 							}
 						}
 						if(data.data.task.length == 3) {
